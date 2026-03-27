@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>NBBL | Basketball Remixed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: -0.02em; }
+        .hero-gradient { background: linear-gradient(0deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%); }
+        .accent-border { border-left: 4px solid #FF5F1F; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
+        .tiktok-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem; }
+        @media (min-width: 640px) { .tiktok-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .tiktok-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (min-width: 1280px) { .tiktok-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+        .tiktok-card {
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0.5rem;
+            overflow: hidden;
+        }
+        .tiktok-player-iframe {
+            width: 100%;
+            max-width: 280px;
+            height: 575px;
+            border: 0;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto;
+        }
+        @media (min-width: 400px) { .tiktok-player-iframe { max-width: 305px; } }
+        @media (min-width: 480px) { .tiktok-player-iframe { max-width: 325px; } }
+        .ig-embed-wrap { min-height: 480px; display: flex; justify-content: center; }
+        .site-logo { height: auto; width: auto; object-fit: contain; }
+        .site-logo--nav { max-height: 2.25rem; }
+        @media (min-width: 768px) { .site-logo--nav { max-height: 2.5rem; } }
+        .site-logo--footer { max-height: 2.75rem; }
+        @media (min-width: 768px) { .site-logo--footer { max-height: 3.25rem; } }
+        .hero-brand-mark { flex-shrink: 0; width: min(42vw, 11rem); filter: drop-shadow(0 4px 20px rgba(0,0,0,0.65)); }
+        @media (min-width: 640px) { .hero-brand-mark { width: min(36vw, 14rem); } }
+        @media (min-width: 768px) { .hero-brand-mark { width: min(32vw, 17rem); } }
+        @media (min-width: 1024px) { .hero-brand-mark { width: min(28vw, 20rem); } }
+        .hero-league-name { font-family: 'Oswald', sans-serif; font-weight: 700; color: #FFE500; line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; filter: drop-shadow(0 2px 12px rgba(0,0,0,0.85)); }
+        .hero-headline { font-family: 'Oswald', sans-serif; text-transform: none; letter-spacing: -0.02em; text-shadow: 0 2px 24px rgba(0,0,0,0.75); }
+        .hero-intro { text-shadow: 0 1px 16px rgba(0,0,0,0.8); }
+        .pillar-carousel-viewport { overflow: hidden; border-radius: 0.75rem; width: 100%; }
+        /* Track = 4× viewport width; each slide = 25% of track = 1× viewport — so translateX(-25% × index) moves exactly one full slide */
+        .pillar-carousel-track { display: flex; width: 400%; transition: transform 0.45s ease-out; will-change: transform; }
+        .pillar-carousel-slide { flex: 0 0 25%; width: 25%; max-width: 25%; display: flex; justify-content: center; align-items: center; padding: 0 0.5rem; box-sizing: border-box; }
+        .pillar-carousel-slide img { max-height: min(70vh, 28rem); width: auto; max-width: 100%; height: auto; object-fit: contain; }
+        .pillar-dot { width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: rgba(255,255,255,0.28); border: none; padding: 0; cursor: pointer; transition: width 0.3s ease, background 0.3s ease; }
+        .pillar-dot.is-active { width: 2rem; background: #FF5F1F; }
+        .pillar-dot:focus-visible { outline: 2px solid #FF5F1F; outline-offset: 3px; }
+        .stay-in-touch-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 0.5rem; padding: 0.75rem 1rem; color: #fff; }
+        .stay-in-touch-input::placeholder { color: rgba(255,255,255,0.35); }
+        .stay-in-touch-input:focus { outline: none; border-color: #FF5F1F; box-shadow: 0 0 0 2px rgba(255,95,31,0.25); }
+        .stay-in-touch-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.85); }
+        .stay-contact-status { min-height: 1.25rem; font-size: 0.875rem; text-align: center; color: rgba(255,255,255,0.55); }
+        .stay-contact-status.is-ok { color: #86efac; }
+        .stay-contact-status.is-err { color: #fca5a5; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass">
+        <a href="#top" class="flex items-center gap-2 md:gap-3 shrink-0">
+            <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--nav max-w-[9rem] md:max-w-[10rem]" aria-hidden="true">
+            <span class="text-xl md:text-2xl font-bold tracking-tighter">NB<span class="text-[#FF5F1F]">BL</span></span>
+        </a>
+        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
+            <a href="#the-game" class="hover:text-[#FF5F1F] transition">The Game</a>
+            <a href="#the-ecosystem" class="hover:text-[#FF5F1F] transition">The Ecosystem</a>
+            <a href="#the-tech" class="hover:text-[#FF5F1F] transition">The Tech</a>
+            <a href="#watch" class="hover:text-[#FF5F1F] transition">Watch</a>
+        </div>
+        <a href="#stay-in-touch" class="bg-[#FF5F1F] px-6 py-2 rounded-full font-bold text-sm uppercase hover:scale-105 transition transform">Stay in Touch</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="top" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-white px-6 pt-28 pb-16 md:pt-32 md:pb-20">
+        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="">
+        <div class="absolute inset-0 hero-gradient" aria-hidden="true"></div>
+
+        <div class="relative z-10 flex flex-col items-center w-full max-w-5xl">
+            <p class="hero-intro max-w-2xl md:max-w-3xl text-center text-base md:text-lg lg:text-xl text-white italic font-light leading-relaxed mb-6 md:mb-8">
+                We’re rebuilding American basketball from the ground up — starting with how it’s played, owned, and monetized.
+            </p>
+            <h2 class="hero-headline text-5xl md:text-7xl lg:text-9xl mb-4 italic text-center">Basketball <span class="text-[#FF5F1F]">Remixed</span></h2>
+            <p class="hero-intro text-lg md:text-2xl max-w-2xl mx-auto font-light text-gray-200 text-center mb-10 md:mb-12">
+                No backboards. No shortcuts. 360 degrees of scoring. The purest test of skill in the game today.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-14 lg:gap-16 w-full">
+                <img src="logo.png" alt="" width="320" height="320" class="site-logo hero-brand-mark h-auto" decoding="async" aria-hidden="true">
+                <h1 class="hero-league-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center sm:text-left">
+                    <span class="block">NO</span>
+                    <span class="block">BACKBOARD</span>
+                    <span class="block">BASKETBALL</span>
+                    <span class="block">LEAGUE</span>
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Game -->
+    <section id="the-game" class="py-20 px-6 max-w-7xl mx-auto scroll-mt-24">
+        <h2 class="text-5xl md:text-6xl mb-12 md:mb-16">The Game</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 lg:gap-14">
+            <div class="accent-border pl-6">
+                <h3 class="text-4xl mb-3">The UHoop</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">NBBL play centers on a smaller <strong class="text-gray-200 font-semibold">16-inch</strong> rim—the <strong class="text-gray-200 font-semibold">UHoop</strong>—a tighter target than a regulation 18-inch hoop. Without a backboard, every shot demands precision; the UHoop rewards skill and touch you can’t fake.</p>
+                <p class="text-gray-400 leading-relaxed"><strong class="text-gray-200 font-semibold">100% skill.</strong> Without the glass, every shot must be perfect. We reward precision over power.</p>
+            </div>
+            <div class="accent-border pl-6">
+                <h3 class="text-4xl mb-3">Live ball</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">The NBBL keeps the ball <strong class="text-gray-200 font-semibold">live after made baskets</strong>—it stays in play out of the net with <strong class="text-gray-200 font-semibold">no stoppages</strong>, and there are <strong class="text-gray-200 font-semibold">no timeouts</strong>. Games are built from short, <strong class="text-gray-200 font-semibold">high-intensity</strong> segments where every possession matters.</p>
+                <p class="text-gray-400 leading-relaxed"><strong class="text-gray-200 font-semibold">4-on-4.</strong> More space, more touches, and high-octane conditioning. No standing around.</p>
+            </div>
+            <div class="accent-border pl-6">
+                <h3 class="text-4xl mb-3">Development &amp; NIL</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">The NBBL positions itself as a <strong class="text-gray-200 font-semibold">player development</strong> and <strong class="text-gray-200 font-semibold">NIL education</strong> platform, aiming to help American players <strong class="text-gray-200 font-semibold">distinguish their skills</strong> from those developed only in traditional basketball systems.</p>
+                <p class="text-gray-400 leading-relaxed"><strong class="text-gray-200 font-semibold">360° play.</strong> The rim is open from all sides. Attack from the baseline, the wings, or directly behind the hoop.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="the-ecosystem" class="py-12 md:py-20 px-6 max-w-7xl mx-auto scroll-mt-24" aria-label="The Ecosystem">
+        <h2 class="text-5xl md:text-6xl mb-10 md:mb-14 text-center md:text-left">The Ecosystem</h2>
+        <div class="flex justify-center mb-8 md:mb-12">
+            <img src="NBBL.png" alt="No Backboard Basketball League" width="1200" height="400" class="w-full max-w-4xl h-auto object-contain" loading="lazy" decoding="async">
+        </div>
+        <div class="relative max-w-4xl mx-auto outline-none" id="pillar-carousel" role="region" aria-roledescription="carousel" aria-label="The Ecosystem pillars carousel" tabindex="0">
+            <div class="pillar-carousel-viewport glass border border-white/10">
+                <div class="pillar-carousel-track" id="pillar-carousel-track">
+                    <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 4">
+                        <img src="Pillar1.png" alt="Pillar 1" width="400" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+                        <img src="Pillar2.png" alt="Pillar 2" width="400" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+                        <img src="Pillar3.png" alt="Pillar 3" width="400" height="400" loading="lazy" decoding="async">
+                    </div>
+                    <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
+                        <img src="Pillar4.png" alt="Pillar 4" width="400" height="400" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="pillar-carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:translate-x-0 z-10 ml-1 sm:ml-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#FF5F1F]/90 hover:border-[#FF5F1F] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5F1F]" aria-label="Previous slide">
+                <span class="sr-only">Previous slide</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" id="pillar-carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-0 z-10 mr-1 sm:mr-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#FF5F1F]/90 hover:border-[#FF5F1F] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5F1F]" aria-label="Next slide">
+                <span class="sr-only">Next slide</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="flex justify-center gap-2 mt-5" id="pillar-carousel-dots" role="tablist" aria-label="Choose slide"></div>
+        </div>
+    </section>
+
+    <!-- The Tech -->
+    <section id="the-tech" aria-label="The Tech" class="py-16 md:py-20 bg-[#0A0A0A] scroll-mt-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl mb-10 md:mb-12 text-center md:text-left">The Tech</h2>
+            <div class="flex flex-col gap-8 md:gap-10">
+                <div class="video-container shadow-2xl">
+                    <iframe src="https://www.youtube.com/embed/5YkYgYZ5vVA?rel=0&modestbranding=1" title="NBBL — The Tech (video 1)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-container shadow-2xl">
+                    <iframe src="https://www.youtube.com/embed/JREedBsCuJg?rel=0&modestbranding=1" title="NBBL — The Tech (video 2)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Feed: TikTok & Instagram -->
+    <section id="watch" class="py-20 bg-[#0A0A0A] scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl mb-4">Trending on the Court</h2>
+            <p class="text-gray-400 mb-12 max-w-2xl">Latest from <a href="https://www.tiktok.com/@nobackboards" class="text-[#FF5F1F] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on TikTok and Instagram.</p>
+
+            <h3 class="text-3xl mb-2">TikTok</h3>
+            <p class="text-gray-400 mb-8">@nobackboards</p>
+            <div class="tiktok-grid mb-20">
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/6813157839008419078?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7010411538599120133?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/6813916203912891654?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7031899728308849966?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7437223323332857131?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7019908709597973765?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7004228721045409029?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+                <div class="glass rounded-xl tiktok-card">
+                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7199295940115696939?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <h3 class="text-3xl mb-8">Instagram Reels</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass rounded-xl p-4 ig-embed-wrap">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKb3vlWvZ_z/" data-instgrm-version="14"></blockquote>
+                </div>
+                <div class="glass rounded-xl p-4 ig-embed-wrap">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKalAKBtz_D/" data-instgrm-version="14"></blockquote>
+                </div>
+                <div class="glass rounded-xl p-4 ig-embed-wrap">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKYNI_LvUIc/" data-instgrm-version="14"></blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UHoopers Society (Community/Ownership) -->
+    <section id="uhoopers" class="hidden py-24 px-6 relative overflow-hidden scroll-mt-24" aria-hidden="true">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#FF5F1F] rounded-full blur-[150px] opacity-20"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <h2 class="text-5xl md:text-7xl mb-6">UHoopers <br><span class="text-[#FF5F1F]">Society</span></h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    We aren't just a league; we're a decentralized athletic community. Own your data, participate in governance, and access exclusive NIL literacy training. Join the 1% who are building the future of sports ownership.
+                </p>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> NIL Opportunities for Athletes
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> Web3 Digital Ownership
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> Direct Community Impact
+                    </li>
+                </ul>
+                <a href="https://www.nobackboard.com/registration" class="inline-block bg-[#FF5F1F] px-8 py-4 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-[#FF5F1F]/20">Enter the Society</a>
+            </div>
+            <div class="md:w-1/2 glass rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition duration-500">
+                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500" alt="NBA Players Training">
+                <div class="mt-6 text-center">
+                    <p class="text-sm uppercase tracking-widest text-gray-400">Founders Collection</p>
+                    <p class="text-2xl font-bold italic">RECLAIM THE GAME</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stay in Touch -->
+    <section id="stay-in-touch" class="py-20 md:py-24 px-6 max-w-7xl mx-auto scroll-mt-24 border-t border-white/10" aria-labelledby="stay-in-touch-heading">
+        <div class="max-w-xl mx-auto">
+            <h2 id="stay-in-touch-heading" class="text-5xl md:text-6xl mb-4 text-center">Stay in Touch</h2>
+            <p class="text-gray-400 text-center mb-10 leading-relaxed">Join our contact list for NBBL news and updates. Add a message if you’d like—we read every note.</p>
+            <p id="stay-contact-status" class="stay-contact-status mb-4" role="status" aria-live="polite"></p>
+            <form id="stay-contact-form" class="glass rounded-2xl p-6 md:p-8 border border-white/10 space-y-6" action="#" method="post" novalidate>
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+                <div>
+                    <label class="stay-in-touch-label" for="stay-name">Name</label>
+                    <input class="stay-in-touch-input" id="stay-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+                </div>
+                <div>
+                    <label class="stay-in-touch-label" for="stay-email">Email</label>
+                    <input class="stay-in-touch-input" id="stay-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="stay-in-touch-label" for="stay-message">Message <span class="text-gray-500 font-normal normal-case tracking-normal">(optional)</span></label>
+                    <textarea class="stay-in-touch-input min-h-[8rem] resize-y" id="stay-message" name="message" rows="5" placeholder="Questions, ideas, or how you’d like to stay involved…"></textarea>
+                </div>
+                <button type="submit" id="stay-contact-submit" class="w-full md:w-auto bg-[#FF5F1F] px-10 py-3.5 rounded-full font-bold text-sm uppercase tracking-wide hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed">Send &amp; subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <a href="#top" class="inline-flex items-center gap-2 md:gap-3 mb-5">
+                    <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--footer max-w-[10rem] md:max-w-[11rem]" aria-hidden="true">
+                    <span class="text-2xl md:text-3xl font-bold tracking-tighter">NB<span class="text-[#FF5F1F]">BL</span></span>
+                </a>
+                <p class="text-gray-500 max-w-sm">Changing the culture of basketball by removing the safety net. Join us in the lab and hone your craft.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Menu</h4>
+                <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
+                    <li><a href="#the-game" class="hover:text-[#FF5F1F] transition">The Game</a></li>
+                    <li><a href="#the-ecosystem" class="hover:text-[#FF5F1F] transition">The Ecosystem</a></li>
+                    <li><a href="#the-tech" class="hover:text-[#FF5F1F] transition">The Tech</a></li>
+                    <li><a href="#watch" class="hover:text-[#FF5F1F] transition">Watch</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Join</h4>
+                <a href="#stay-in-touch" class="inline-block bg-[#FF5F1F] px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wide hover:opacity-90 transition mb-8">Stay in Touch</a>
+                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Connect</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#FF5F1F] transition" aria-label="Instagram">IG</a>
+                    <a href="https://www.tiktok.com/@nobackboards" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#FF5F1F] transition" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TK</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-xs text-gray-600 flex flex-col sm:flex-row sm:justify-between gap-2">
+            <p>© 2026 NO BACKBOARD BASKETBALL LEAGUE. ALL RIGHTS RESERVED.</p>
+            <p>DESIGNED FOR THE 1%</p>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        var root = document.getElementById('pillar-carousel');
+        var track = document.getElementById('pillar-carousel-track');
+        var prevBtn = document.getElementById('pillar-carousel-prev');
+        var nextBtn = document.getElementById('pillar-carousel-next');
+        var dotsHost = document.getElementById('pillar-carousel-dots');
+        if (!root || !track || !prevBtn || !nextBtn || !dotsHost) return;
+
+        var slides = track.children.length;
+        var index = 0;
+        var dots = [];
+        var viewport = track.parentElement;
+
+        function render() {
+            if (viewport) {
+                var w = viewport.getBoundingClientRect().width;
+                track.style.transform = 'translateX(' + (-index * w) + 'px)';
+            }
+            dots.forEach(function (d, i) {
+                var on = i === index;
+                d.setAttribute('aria-selected', on ? 'true' : 'false');
+                d.classList.toggle('is-active', on);
+            });
+        }
+
+        function go(delta) {
+            index = (index + delta + slides) % slides;
+            render();
+        }
+
+        for (var i = 0; i < slides; i++) {
+            (function (n) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'pillar-dot';
+                b.setAttribute('aria-label', 'Go to slide ' + (n + 1));
+                b.setAttribute('role', 'tab');
+                b.addEventListener('click', function () {
+                    index = n;
+                    render();
+                });
+                dotsHost.appendChild(b);
+                dots.push(b);
+            })(i);
+        }
+
+        prevBtn.addEventListener('click', function () { go(-1); });
+        nextBtn.addEventListener('click', function () { go(1); });
+
+        root.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+        });
+
+        window.addEventListener('resize', function () { render(); });
+
+        render();
+        if (typeof window.requestAnimationFrame === 'function') {
+            window.requestAnimationFrame(function () { render(); });
+        }
+    })();
+    </script>
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+    (function () {
+        var form = document.getElementById('stay-contact-form');
+        var statusEl = document.getElementById('stay-contact-status');
+        var submitBtn = document.getElementById('stay-contact-submit');
+        if (!form || !statusEl) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            statusEl.textContent = '';
+            statusEl.classList.remove('is-ok', 'is-err');
+
+            var fd = new FormData(form);
+            if (fd.get('_gotcha')) return;
+
+            var payload = {
+                name: fd.get('name'),
+                email: fd.get('email'),
+                message: fd.get('message') || ''
+            };
+
+            if (submitBtn) submitBtn.disabled = true;
+            statusEl.textContent = 'Sending…';
+
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+                .then(function (r) {
+                    return r.json().then(function (data) {
+                        if (!r.ok) throw new Error((data && data.error) || 'Something went wrong.');
+                        return data;
+                    });
+                })
+                .then(function () {
+                    statusEl.textContent = 'Thanks — we received your message.';
+                    statusEl.classList.add('is-ok');
+                    form.reset();
+                })
+                .catch(function (err) {
+                    statusEl.textContent = err.message || 'Send failed. Try again later.';
+                    statusEl.classList.add('is-err');
+                })
+                .finally(function () {
+                    if (submitBtn) submitBtn.disabled = false;
+                });
+        });
+    })();
+    </script>
+</body>
+</html>
