@@ -11,7 +11,7 @@
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
         h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: -0.02em; }
         .hero-gradient { background: linear-gradient(0deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%); }
-        .accent-border { border-left: 4px solid #FF5F1F; }
+        .accent-border { border-left: 4px solid #E70910; }
         .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
@@ -57,11 +57,11 @@
         .pillar-carousel-slide { flex: 0 0 25%; width: 25%; max-width: 25%; display: flex; justify-content: center; align-items: center; padding: 0 0.5rem; box-sizing: border-box; }
         .pillar-carousel-slide img { max-height: min(70vh, 28rem); width: auto; max-width: 100%; height: auto; object-fit: contain; }
         .pillar-dot { width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: rgba(255,255,255,0.28); border: none; padding: 0; cursor: pointer; transition: width 0.3s ease, background 0.3s ease; }
-        .pillar-dot.is-active { width: 2rem; background: #FF5F1F; }
-        .pillar-dot:focus-visible { outline: 2px solid #FF5F1F; outline-offset: 3px; }
+        .pillar-dot.is-active { width: 2rem; background: #E70910; }
+        .pillar-dot:focus-visible { outline: 2px solid #E70910; outline-offset: 3px; }
         .stay-in-touch-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 0.5rem; padding: 0.75rem 1rem; color: #fff; }
         .stay-in-touch-input::placeholder { color: rgba(255,255,255,0.35); }
-        .stay-in-touch-input:focus { outline: none; border-color: #FF5F1F; box-shadow: 0 0 0 2px rgba(255,95,31,0.25); }
+        .stay-in-touch-input:focus { outline: none; border-color: #E70910; box-shadow: 0 0 0 2px rgba(231,9,16,0.25); }
         .stay-in-touch-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.85); }
         .stay-contact-status { min-height: 1.25rem; font-size: 0.875rem; text-align: center; color: rgba(255,255,255,0.55); }
         .stay-contact-status.is-ok { color: #86efac; }
@@ -75,15 +75,18 @@
     <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass">
         <a href="#top" class="flex items-center gap-2 md:gap-3 shrink-0">
             <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--nav max-w-[9rem] md:max-w-[10rem]" aria-hidden="true">
-            <span class="text-xl md:text-2xl font-bold tracking-tighter">NB<span class="text-[#FF5F1F]">BL</span></span>
+            <span class="text-xl md:text-2xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
         </a>
         <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
-            <a href="#the-game" class="hover:text-[#FF5F1F] transition">The Game</a>
-            <a href="#the-ecosystem" class="hover:text-[#FF5F1F] transition">The Ecosystem</a>
-            <a href="#the-tech" class="hover:text-[#FF5F1F] transition">The Tech</a>
-            <a href="#watch" class="hover:text-[#FF5F1F] transition">Watch</a>
+            <a href="#the-game" class="hover:text-[#E70910] transition">The Game</a>
+            <a href="#the-ecosystem" class="hover:text-[#E70910] transition">The Ecosystem</a>
+            <a href="#the-tech" class="hover:text-[#E70910] transition">The Tech</a>
+            <a href="#watch" class="hover:text-[#E70910] transition">Watch</a>
         </div>
-        <a href="#stay-in-touch" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center shrink-0 bg-[#FF5F1F] px-3 py-1.5 md:px-6 md:py-2 rounded-full font-bold text-sm uppercase text-center leading-tight hover:scale-105 transition transform"><span>Join The</span><span>Movement</span></a>
+        <div class="flex items-center gap-2 md:gap-3 shrink-0">
+            <a href="#playcenter-demo" class="inline-flex items-center justify-center bg-[#FFE500] px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-xs md:text-sm uppercase tracking-wide text-black hover:opacity-90 transition">Try the demo</a>
+            <a href="#stay-in-touch" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#E70910] px-3 py-1.5 md:px-6 md:py-2 rounded-full font-bold text-sm uppercase text-center leading-tight hover:scale-105 transition transform"><span>Join The</span><span>Movement</span></a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -95,7 +98,7 @@
             <p class="hero-intro max-w-2xl md:max-w-3xl text-center text-base md:text-lg lg:text-xl text-white italic font-light leading-relaxed mb-6 md:mb-8">
                 We’re rebuilding American basketball from the ground up — starting with how it’s played, owned, and monetized.
             </p>
-            <h2 class="hero-headline text-5xl md:text-7xl lg:text-9xl mb-4 italic text-center">Basketball <span class="text-[#FF5F1F]">Remixed</span></h2>
+            <h2 class="hero-headline text-5xl md:text-7xl lg:text-9xl mb-4 italic text-center">Basketball <span class="text-[#E70910]">Remixed</span></h2>
             <p class="hero-intro text-lg md:text-2xl max-w-2xl mx-auto font-light text-gray-200 text-center mb-10 md:mb-12">
                 No backboards. No shortcuts. 360 degrees of scoring. The purest test of skill in the game today.
             </p>
@@ -156,11 +159,11 @@
                     </div>
                 </div>
             </div>
-            <button type="button" id="pillar-carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:translate-x-0 z-10 ml-1 sm:ml-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#FF5F1F]/90 hover:border-[#FF5F1F] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5F1F]" aria-label="Previous slide">
+            <button type="button" id="pillar-carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:translate-x-0 z-10 ml-1 sm:ml-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#E70910]/90 hover:border-[#E70910] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]" aria-label="Previous slide">
                 <span class="sr-only">Previous slide</span>
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <button type="button" id="pillar-carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-0 z-10 mr-1 sm:mr-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#FF5F1F]/90 hover:border-[#FF5F1F] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5F1F]" aria-label="Next slide">
+            <button type="button" id="pillar-carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-0 z-10 mr-1 sm:mr-[-0.75rem] w-10 h-10 md:w-11 md:h-11 rounded-full glass border border-white/15 flex items-center justify-center text-white hover:bg-[#E70910]/90 hover:border-[#E70910] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]" aria-label="Next slide">
                 <span class="sr-only">Next slide</span>
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
             </button>
@@ -181,7 +184,7 @@
                     <p>Instead of moments disappearing after the run, every rep is captured, organized, and turned into <strong class="text-gray-200 font-semibold">shareable assets that build your identity</strong> over time.</p>
                     <div>
                         <p><strong class="text-gray-200 font-semibold">The system combines:</strong></p>
-                        <ul class="list-disc list-outside space-y-2 pl-5 mt-3 marker:text-[#FF5F1F]">
+                        <ul class="list-disc list-outside space-y-2 pl-5 mt-3 marker:text-[#E70910]">
                             <li>The UHoop — <strong class="text-gray-200 font-semibold">turning any space into a precision training lab</strong></li>
                             <li>A <strong class="text-gray-200 font-semibold">recording app</strong> built for real basketball moments</li>
                             <li>A <strong class="text-gray-200 font-semibold">content hub</strong> to organize runs, highlights, and development</li>
@@ -193,12 +196,12 @@
                 <div class="video-container shadow-2xl">
                     <iframe src="https://www.youtube.com/embed/JREedBsCuJg?rel=0&modestbranding=1" title="NBBL — The Tech (video 1)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <a href="https://nbbl-playcenter.vercel.app/" class="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-[#FF5F1F]/40 bg-gradient-to-r from-[#FF5F1F]/15 via-white/[0.06] to-white/[0.04] px-6 py-5 shadow-lg shadow-black/30 transition hover:border-[#FF5F1F] hover:from-[#FF5F1F]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5F1F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]">
+                <a id="playcenter-demo" href="https://nbbl-playcenter.vercel.app/" class="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-[#E70910]/40 bg-gradient-to-r from-[#E70910]/15 via-white/[0.06] to-white/[0.04] px-6 py-5 shadow-lg shadow-black/30 transition hover:border-[#E70910] hover:from-[#E70910]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A] scroll-mt-24">
                     <div class="min-w-0">
-                        <p class="font-['Oswald'] text-xl md:text-2xl uppercase tracking-tight text-white">NBBL Allnet <span class="text-[#FF5F1F]">Demo</span></p>
-                        <p class="mt-1 text-sm md:text-base text-gray-400 group-hover:text-gray-300 transition">Shoot on a milk crate, netball ring, or trash can—any setup with no backboard counts. Record your shots, upload your clips, and share them with the community.<br><br>No Backboard. All Net. That’s all.</p>
+                        <p class="font-['Oswald'] text-xl md:text-2xl uppercase tracking-tight text-white">NBBL Allnet <span class="text-[#E70910]">(PlayCenter Demo)</span></p>
+                        <p class="mt-1 text-sm md:text-base text-gray-400 group-hover:text-gray-300 transition">Shoot on a milk crate, netball ring, or trash can—any setup with no backboard counts. Record your shots, upload your clips, and share them with the community. Get a taste of what the PlayCenter app will feel like with this demo.<br><br>No Backboard. All Net. That’s all.</p>
                     </div>
-                    <span class="shrink-0 inline-flex items-center justify-center rounded-full bg-[#FF5F1F] px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-black group-hover:scale-105 transition transform">Open demo</span>
+                    <span class="shrink-0 inline-flex items-center justify-center rounded-full bg-[#FFE500] px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-black group-hover:scale-105 transition transform">Try the Demo</span>
                 </a>
                 <div class="video-container shadow-2xl">
                     <iframe src="https://www.youtube.com/embed/5YkYgYZ5vVA?rel=0&modestbranding=1" title="NBBL — The Tech (video 2)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -211,7 +214,7 @@
     <section id="watch" class="py-20 bg-[#0A0A0A] scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-5xl mb-4">Trending on the Court</h2>
-            <p class="text-gray-400 mb-12 max-w-2xl">Latest from <a href="https://www.tiktok.com/@nobackboards" class="text-[#FF5F1F] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on TikTok and Instagram.</p>
+            <p class="text-gray-400 mb-12 max-w-2xl">Latest from <a href="https://www.tiktok.com/@nobackboards" class="text-[#E70910] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on TikTok and Instagram.</p>
 
             <h3 class="text-3xl mb-2">TikTok</h3>
             <p class="text-gray-400 mb-8">@nobackboards</p>
@@ -259,25 +262,25 @@
 
     <!-- UHoopers Society (Community/Ownership) -->
     <section id="uhoopers" class="hidden py-24 px-6 relative overflow-hidden scroll-mt-24" aria-hidden="true">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#FF5F1F] rounded-full blur-[150px] opacity-20"></div>
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#E70910] rounded-full blur-[150px] opacity-20"></div>
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-1/2">
-                <h2 class="text-5xl md:text-7xl mb-6">UHoopers <br><span class="text-[#FF5F1F]">Society</span></h2>
+                <h2 class="text-5xl md:text-7xl mb-6">UHoopers <br><span class="text-[#E70910]">Society</span></h2>
                 <p class="text-xl text-gray-300 mb-8 leading-relaxed">
                     We aren't just a league; we're a decentralized athletic community. Own your data, participate in governance, and access exclusive NIL literacy training. Join the 1% who are building the future of sports ownership.
                 </p>
                 <ul class="space-y-4 mb-10">
                     <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> NIL Opportunities for Athletes
+                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> NIL Opportunities for Athletes
                     </li>
                     <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> Web3 Digital Ownership
+                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> Web3 Digital Ownership
                     </li>
                     <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#FF5F1F] rotate-45"></div> Direct Community Impact
+                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> Direct Community Impact
                     </li>
                 </ul>
-                <a href="https://www.nobackboard.com/registration" class="inline-block bg-[#FF5F1F] px-8 py-4 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-[#FF5F1F]/20">Enter the Society</a>
+                <a href="https://www.nobackboard.com/registration" class="inline-block bg-[#E70910] px-8 py-4 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-[#E70910]/20">Enter the Society</a>
             </div>
             <div class="md:w-1/2 glass rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition duration-500">
                 <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500" alt="NBA Players Training">
@@ -309,7 +312,7 @@
                     <label class="stay-in-touch-label" for="stay-message">Message <span class="text-gray-500 font-normal normal-case tracking-normal">(optional)</span></label>
                     <textarea class="stay-in-touch-input min-h-[8rem] resize-y" id="stay-message" name="message" rows="5" placeholder="Questions, ideas, or how you’d like to stay involved…"></textarea>
                 </div>
-                <button type="submit" id="stay-contact-submit" class="w-full md:w-auto bg-[#FF5F1F] px-10 py-3.5 rounded-full font-bold text-sm uppercase tracking-wide hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed">Send &amp; subscribe</button>
+                <button type="submit" id="stay-contact-submit" class="w-full md:w-auto bg-[#E70910] px-10 py-3.5 rounded-full font-bold text-sm uppercase tracking-wide hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed">Send &amp; subscribe</button>
             </form>
         </div>
     </section>
@@ -320,26 +323,27 @@
             <div class="col-span-1 md:col-span-2">
                 <a href="#top" class="inline-flex items-center gap-2 md:gap-3 mb-5">
                     <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--footer max-w-[10rem] md:max-w-[11rem]" aria-hidden="true">
-                    <span class="text-2xl md:text-3xl font-bold tracking-tighter">NB<span class="text-[#FF5F1F]">BL</span></span>
+                    <span class="text-2xl md:text-3xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
                 </a>
                 <p class="text-gray-500 max-w-sm">Changing the culture of basketball by removing the safety net. Join us in the lab and hone your craft.</p>
             </div>
             <div>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Menu</h4>
                 <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
-                    <li><a href="#the-game" class="hover:text-[#FF5F1F] transition">The Game</a></li>
-                    <li><a href="#the-ecosystem" class="hover:text-[#FF5F1F] transition">The Ecosystem</a></li>
-                    <li><a href="#the-tech" class="hover:text-[#FF5F1F] transition">The Tech</a></li>
-                    <li><a href="#watch" class="hover:text-[#FF5F1F] transition">Watch</a></li>
+                    <li><a href="#the-game" class="hover:text-[#E70910] transition">The Game</a></li>
+                    <li><a href="#the-ecosystem" class="hover:text-[#E70910] transition">The Ecosystem</a></li>
+                    <li><a href="#the-tech" class="hover:text-[#E70910] transition">The Tech</a></li>
+                    <li><a href="#watch" class="hover:text-[#E70910] transition">Watch</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Join</h4>
-                <a href="#stay-in-touch" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#FF5F1F] px-3 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition mb-8"><span>Join The</span><span>Movement</span></a>
+                <a href="#playcenter-demo" class="inline-flex items-center justify-center w-full md:w-auto bg-[#FFE500] px-3 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-xs uppercase tracking-wide text-black hover:opacity-90 transition mb-3">Try the demo</a>
+                <a href="#stay-in-touch" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#E70910] px-3 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition mb-8"><span>Join The</span><span>Movement</span></a>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Connect</h4>
                 <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#FF5F1F] transition" aria-label="Instagram">IG</a>
-                    <a href="https://www.tiktok.com/@nobackboards" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#FF5F1F] transition" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TK</a>
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#E70910] transition" aria-label="Instagram">IG</a>
+                    <a href="https://www.tiktok.com/@nobackboards" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#E70910] transition" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TK</a>
                 </div>
             </div>
         </div>

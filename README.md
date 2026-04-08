@@ -4,7 +4,10 @@ Static marketing site for **No Backboard Basketball League** (NBBL): hero, game 
 
 ## Recent changes
 
-- **NBBL PlayCenter demo banner (The Tech):** Below the second YouTube embed in **The Tech** section, a call-to-action links to the interactive demo at [https://nbbl-playcenter.vercel.app/](https://nbbl-playcenter.vercel.app/). The link opens in the **same tab** (no `target="_blank"`). Styling matches the site (orange accent `#FF5F1F`, glass-style card, focus ring for keyboard users).
+- **Brand accent (site-wide):** Primary accent color is **logo red `#E70910`** (rgb(231, 9, 16)), sampled from the red in `logo.png`. It replaced the previous orange `#FF5F1F` on links, buttons, borders, focus rings, and highlights. Form focus on “Stay in Touch” uses `rgba(231, 9, 16, 0.25)` for the glow.
+- **NBBL PlayCenter demo banner (The Tech):** Between the two YouTube embeds in **The Tech** section, a call-to-action card links to the interactive demo at [https://nbbl-playcenter.vercel.app/](https://nbbl-playcenter.vercel.app/) in the **same tab** (no `target="_blank"`). The card has **`id="playcenter-demo"`** and **`scroll-mt-24`** so in-page anchors clear the fixed nav.
+- **Demo copy:** Headline is **NBBL Allnet (PlayCenter Demo)** (parenthetical uses the accent color). Body copy includes a line inviting users to preview how the PlayCenter app will feel, then the **No Backboard. All Net.** tagline.
+- **“Try the demo” navigation:** The header and footer include a **Try the demo** control that scrolls to **`#playcenter-demo`**. On the card, the pill CTA reads **Try the Demo** and opens the demo URL. Those yellow CTAs use **`#FFE500`** (logo yellow) with black text; primary actions such as **Join The Movement** stay on the red accent.
 
 ## Tech stack
 
