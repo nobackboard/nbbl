@@ -1,7 +1,14 @@
 {
   "name": "nbbl-landing",
   "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles/tailwind.source.css -o ./tw.css --minify",
+    "build": "npm run build:css"
+  },
   "dependencies": {
     "resend": "^4.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }
