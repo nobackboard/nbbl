@@ -80,6 +80,10 @@ npx --yes vercel dev
 
 Then open the URL shown (often `http://localhost:3000`).
 
+## Vercel
+
+This repo keeps **`index.html`** and static assets at the **project root** (not under `public/`). **`vercel.json`** sets **`outputDirectory` to `"."`** so deployments do not expect a `public` folder after `npm run build`.
+
 ## Repository layout
 
 - `index.html` — main site
@@ -88,6 +92,7 @@ Then open the URL shown (often `http://localhost:3000`).
 - `styles/tailwind.source.css` — Tailwind source
 - `tailwind.config.js` — Tailwind config
 - `.env.example` — documented env vars
+- `vercel.json` — build output directory (root) for static files + `api/` functions
 - `AGENTS.md` — notes for AI/human contributors (Vercel practices)
 
 ## Recent changes
