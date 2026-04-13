@@ -19,6 +19,11 @@ const TO_EMAILS = parsedTo.length > 0 ? parsedTo : DEFAULT_TO;
 const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL || 'NBBL Website <contact@thecpi.network>';
 
+function ccEnv(name) {
+  const v = process.env[name];
+  return v == null ? '' : String(v).trim();
+}
+
 function splitDisplayName(name) {
   const t = String(name || '').trim();
   if (!t) return { first_name: '', last_name: '' };
@@ -32,9 +37,7 @@ function splitDisplayName(name) {
 
 function parseConstantContactListIds() {
   const raw =
-    process.env.CONSTANT_CONTACT_LIST_IDS ||
-    process.env.CONSTANT_CONTACT_LIST_ID ||
-    '';
+    ccEnv('CONSTANT_CONTACT_LIST_IDS') || ccEnv('CONSTANT_CONTACT_LIST_ID');
   return raw
     .split(',')
     .map((s) => s.trim())
@@ -43,9 +46,9 @@ function parseConstantContactListIds() {
 
 function isConstantContactConfigured() {
   return Boolean(
-    process.env.CONSTANT_CONTACT_CLIENT_ID &&
-      process.env.CONSTANT_CONTACT_CLIENT_SECRET &&
-      process.env.CONSTANT_CONTACT_REFRESH_TOKEN &&
+    ccEnv('CONSTANT_CONTACT_CLIENT_ID') &&
+      ccEnv('CONSTANT_CONTACT_CLIENT_SECRET') &&
+      ccEnv('CONSTANT_CONTACT_REFRESH_TOKEN') &&
       parseConstantContactListIds().length > 0
   );
 }
@@ -58,14 +61,14 @@ function isConstantContactPartiallyConfigured() {
     'CONSTANT_CONTACT_LIST_ID',
     'CONSTANT_CONTACT_LIST_IDS',
   ];
-  const any = keys.some((k) => Boolean(process.env[k]));
+  const any = keys.some((k) => Boolean(ccEnv(k)));
   return any && !isConstantContactConfigured();
 }
 
 async function getConstantContactAccessToken() {
-  const clientId = process.env.CONSTANT_CONTACT_CLIENT_ID;
-  const clientSecret = process.env.CONSTANT_CONTACT_CLIENT_SECRET;
-  const refreshToken = process.env.CONSTANT_CONTACT_REFRESH_TOKEN;
+  const clientId = ccEnv('CONSTANT_CONTACT_CLIENT_ID');
+  const clientSecret = ccEnv('CONSTANT_CONTACT_CLIENT_SECRET');
+  const refreshToken = ccEnv('CONSTANT_CONTACT_REFRESH_TOKEN');
 
   const now = Date.now();
   if (
@@ -78,23 +81,50 @@ async function getConstantContactAccessToken() {
   const basic = Buffer.from(`${clientId}:${clientSecret}`, 'utf8').toString(
     'base64'
   );
-  const body = new URLSearchParams({
+  const bodyBasic = new URLSearchParams({
     grant_type: 'refresh_token',
     refresh_token: refreshToken,
   });
+  const bodyForm = new URLSearchParams({
+    grant_type: 'refresh_token',
+    refresh_token: refreshToken,
+    client_id: clientId,
+    client_secret: clientSecret,
+  });
 
-  const tokenRes = await fetch(CC_TOKEN_URL, {
+  let tokenRes = await fetch(CC_TOKEN_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       Accept: 'application/json',
       Authorization: `Basic ${basic}`,
     },
-    body: body.toString(),
+    body: bodyBasic.toString(),
   });
 
-  const tokenJson = await tokenRes.json().catch(() => ({}));
+  let tokenJson = await tokenRes.json().catch(() => ({}));
   if (!tokenRes.ok) {
+    console.error(
+      '[contact] CC token (Basic auth) failed:',
+      tokenRes.status,
+      JSON.stringify(tokenJson)
+    );
+    tokenRes = await fetch(CC_TOKEN_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+      body: bodyForm.toString(),
+    });
+    tokenJson = await tokenRes.json().catch(() => ({}));
+  }
+  if (!tokenRes.ok) {
+    console.error(
+      '[contact] CC token (form client_secret) failed:',
+      tokenRes.status,
+      JSON.stringify(tokenJson)
+    );
     const msg =
       (tokenJson && (tokenJson.error_description || tokenJson.error)) ||
       `Token request failed (${tokenRes.status})`;
