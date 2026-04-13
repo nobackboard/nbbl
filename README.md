@@ -32,7 +32,11 @@ Vercel runs **`npm run build`** on deploy, which runs `build:css`, so `tw.css` s
 The form in **`#stay-in-touch`** posts JSON to **`/api/contact`** (`name`, `email`, optional `message`). Flow:
 
 1. **Resend** — Sends a plaintext email to your team (`CONTACT_TO_EMAIL` or built-in defaults), with visitor email as `replyTo`.
-2. **Constant Contact** (optional) — If all CC env vars below are set, the handler calls **`POST /v3/contacts/sign_up_form`** so the address is created or updated and added to your list(s). CRM failures are logged in Vercel; the visitor still sees success if email sent.
+2. **Constant Contact** (optional) — If all CC env vars below are set, the handler calls **`POST /v3/contacts/sign_up_form`** so the address is created or updated and added to your list(s). The JSON response includes **`ccSync`**: `"ok"` (added/updated), `"failed"` (CRM error — check **Vercel → deployment → Functions → Logs** for `[contact] Constant Contact`), or `"off"` (CRM not configured on that deployment). Resend can succeed while `ccSync` is `"failed"` if the token or list ID is wrong.
+
+   **Production checklist:** add every `CONSTANT_CONTACT_*` variable in the **Vercel** project (not only in `.env.local`). A partial set logs a warning and skips CRM.
+
+   **Constant Contact account settings:** if **Confirmed Opt-In** is on, new addresses may show as **pending** until they confirm; they can still be on the list with restricted mailing status.
 
 OAuth setup (one-time): [Constant Contact Authorization Code Flow](https://v3.developer.constantcontact.com/api_guide/server_flow.html). Use scopes including **`contact_data`** and **`offline_access`**, then store the **refresh token** in `CONSTANT_CONTACT_REFRESH_TOKEN`.
 

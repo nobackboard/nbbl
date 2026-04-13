@@ -455,8 +455,12 @@
                         return data;
                     });
                 })
-                .then(function () {
-                    statusEl.textContent = 'Thanks — we received your message.';
+                .then(function (data) {
+                    var msg = 'Thanks — we received your message.';
+                    if (data && data.ccSync === 'failed') {
+                        msg += ' If you expected to join our email list, try again later or email us from the address you used.';
+                    }
+                    statusEl.textContent = msg;
                     statusEl.classList.add('is-ok');
                     form.reset();
                 })

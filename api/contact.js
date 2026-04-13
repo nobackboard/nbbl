@@ -50,6 +50,18 @@ function isConstantContactConfigured() {
   );
 }
 
+function isConstantContactPartiallyConfigured() {
+  const keys = [
+    'CONSTANT_CONTACT_CLIENT_ID',
+    'CONSTANT_CONTACT_CLIENT_SECRET',
+    'CONSTANT_CONTACT_REFRESH_TOKEN',
+    'CONSTANT_CONTACT_LIST_ID',
+    'CONSTANT_CONTACT_LIST_IDS',
+  ];
+  const any = keys.some((k) => Boolean(process.env[k]));
+  return any && !isConstantContactConfigured();
+}
+
 async function getConstantContactAccessToken() {
   const clientId = process.env.CONSTANT_CONTACT_CLIENT_ID;
   const clientSecret = process.env.CONSTANT_CONTACT_CLIENT_SECRET;
@@ -63,16 +75,21 @@ async function getConstantContactAccessToken() {
     return ccTokenCache.accessToken;
   }
 
+  const basic = Buffer.from(`${clientId}:${clientSecret}`, 'utf8').toString(
+    'base64'
+  );
   const body = new URLSearchParams({
     grant_type: 'refresh_token',
     refresh_token: refreshToken,
-    client_id: clientId,
-    client_secret: clientSecret,
   });
 
   const tokenRes = await fetch(CC_TOKEN_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json',
+      Authorization: `Basic ${basic}`,
+    },
     body: body.toString(),
   });
 
@@ -126,6 +143,11 @@ async function syncConstantContactContact({ name, email }) {
 
   const ccJson = await ccRes.json().catch(() => ({}));
   if (!ccRes.ok) {
+    console.error(
+      '[contact] Constant Contact API response:',
+      ccRes.status,
+      JSON.stringify(ccJson)
+    );
     const msg =
       (Array.isArray(ccJson.errors) &&
         ccJson.errors[0] &&
@@ -200,18 +222,29 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: error.message || 'Failed to send email.' });
     }
 
+    let ccSync = 'off';
     if (isConstantContactConfigured()) {
+      ccSync = 'failed';
       try {
         await syncConstantContactContact({ name, email });
+        ccSync = 'ok';
       } catch (ccErr) {
         console.error(
           '[contact] Constant Contact sync failed:',
           ccErr && ccErr.message ? ccErr.message : ccErr
         );
       }
+    } else if (isConstantContactPartiallyConfigured()) {
+      console.warn(
+        '[contact] Constant Contact env is incomplete; CRM sync is disabled. Set CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, and LIST_ID (or LIST_IDS) on this deployment.'
+      );
     }
 
-    return res.status(200).json({ ok: true, id: data && data.id });
+    return res.status(200).json({
+      ok: true,
+      id: data && data.id,
+      ccSync,
+    });
   } catch (err) {
     return res.status(500).json({
       error: err.message || 'Failed to send email.',
