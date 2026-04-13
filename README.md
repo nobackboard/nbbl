@@ -40,6 +40,8 @@ The form in **`#stay-in-touch`** posts JSON to **`/api/contact`** (`name`, `emai
 
 OAuth setup (one-time): [Constant Contact Authorization Code Flow](https://v3.developer.constantcontact.com/api_guide/server_flow.html). Use scopes including **`contact_data`** and **`offline_access`**, then store the **refresh token** in `CONSTANT_CONTACT_REFRESH_TOKEN`.
 
+If Vercel logs show **`invalid_grant`** / “refresh token is invalid or expired,” the value in **Vercel** is wrong, revoked, or rotated—run the authorize URL again, exchange the new **`code`** for tokens, and **replace** `CONSTANT_CONTACT_REFRESH_TOKEN` (and redeploy). The app no longer sends a second token request when `invalid_grant` occurs, so you avoid extra **429** rate limits from Constant Contact.
+
 List IDs are UUIDs from **`GET https://api.cc.email/v3/contact_lists`** (`list_id` on each list).
 
 ## Environment variables

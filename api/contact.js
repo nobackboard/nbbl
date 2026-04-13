@@ -109,6 +109,11 @@ async function getConstantContactAccessToken() {
       tokenRes.status,
       JSON.stringify(tokenJson)
     );
+    if (tokenJson.error === 'invalid_grant') {
+      throw new Error(
+        'Constant Contact refresh token is invalid or expired. Run the OAuth authorization code flow again, copy the new refresh token, and update CONSTANT_CONTACT_REFRESH_TOKEN in Vercel (Production).'
+      );
+    }
     tokenRes = await fetch(CC_TOKEN_URL, {
       method: 'POST',
       headers: {
@@ -125,6 +130,11 @@ async function getConstantContactAccessToken() {
       tokenRes.status,
       JSON.stringify(tokenJson)
     );
+    if (tokenRes.status === 429) {
+      throw new Error(
+        'Constant Contact temporarily rate-limited token requests. Wait a few minutes and try again; avoid double token calls after a failed refresh.'
+      );
+    }
     const msg =
       (tokenJson && (tokenJson.error_description || tokenJson.error)) ||
       `Token request failed (${tokenRes.status})`;
