@@ -106,5 +106,5 @@ This repo keeps **`index.html`** and static assets at the **project root** (not 
 - **Constant Contact:** Optional sync of signups to a contact list via V3 `sign_up_form` after Resend succeeds.
 - **Tailwind production build:** Replaced Play CDN with CLI-built **`tw.css`** and `npm run build` / `build:css` for Vercel.
 - **Brand accent (site-wide):** Primary accent **`#E70910`** (logo red); yellow CTAs **`#FFE500`** with black text.
-- **NBBL PlayCenter demo (The Tech):** CTA card with `id="playcenter-demo"` linking to [nbbl-playcenter.vercel.app](https://nbbl-playcenter.vercel.app/) (same tab); nav/footer use **Try the demo** where applicable.
+- **PlayCenter campaign (The Tech):** CTA card with `id="playcenter-demo"` linking to the Indiegogo campaign (`https://www.indiegogo.com/en/projects/nobackboards/playcenter-by-nbbl`) and CTAs updated to **Back PlayCenter on Indiegogo** (links open in a new tab).
 - **Join the Movement:** Contact block id **`#stay-in-touch`**; form submits to **`/api/contact`**.
