@@ -1,6 +1,6 @@
 # NBBL Landing
 
-Static marketing site for **No Backboard Basketball League** (NBBL): hero, game rules, ecosystem carousel, tech videos, social embeds, and **Join the Movement** contact form.
+Static marketing site for **No Backboard Basketball League** (NBBL): hero, game rules, ecosystem carousel, tech videos, **NBBL Showcase Gym** (Gilbert, Arizona — operations begin September 1, 2026), social embeds, and **Join the Movement** contact form.
 
 ## Tech stack
 
@@ -100,9 +100,15 @@ This repo keeps **`index.html`** and static assets at the **project root** (not 
 - `.env.example` — documented env vars
 - `vercel.json` — build output directory (root) for static files + `api/` functions
 - `AGENTS.md` — notes for AI/human contributors (Vercel practices)
+- `Gym Annoucement.png` — hero gym announcement graphic (links to `#the-gym`)
+- `Gym Annoucement 2.png` — The Gym section announcement graphic
+- `Gym Annoucement 3.png` — Get Ready for Gilbert graphic (links to `#stay-in-touch`)
 
 ## Recent changes
 
+- **Showcase Gym announcement graphics:** Text banners replaced with three graphics. Hero uses **`Gym Annoucement.png`** (links to `#the-gym`). The Gym copy uses **`Gym Annoucement 2.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3.png`** (links to `#stay-in-touch`).
+- **Gilbert gym copy and SEO:** Title, description, and Open Graph/Twitter tags now lead with the NBBL Showcase Gym in Gilbert, Arizona (operations begin September 1, 2026). The Gym section copy frames Gilbert as the first physical operating node.
+- **Nav and footer CTAs:** Yellow nav button is **Gilbert Gym Opening 9/1/26** (scrolls to `#the-gym`). **Support Showcase Gym** GoFundMe lives in the footer Join column.
 - **Constant Contact:** Optional sync of signups to a contact list via V3 `sign_up_form` after Resend succeeds.
 - **Tailwind production build:** Replaced Play CDN with CLI-built **`tw.css`** and `npm run build` / `build:css` for Vercel.
 - **Brand accent (site-wide):** Primary accent **`#E70910`** (logo red); yellow CTAs **`#FFE500`** with black text.
