@@ -3,6 +3,11 @@ const { Resend } = require('resend');
 const CC_TOKEN_URL = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 const CC_SIGN_UP_URL = 'https://api.cc.email/v3/contacts/sign_up_form';
 
+const HUBSPOT_PORTAL_ID = process.env.HUBSPOT_PORTAL_ID || '247117755';
+const HUBSPOT_FORM_GUID =
+  process.env.HUBSPOT_FORM_GUID || 'e51254fe-9f3f-4de3-93b9-875abb686ba7';
+const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
 /** In-process cache so we do not refresh the access token on every request. */
 let ccTokenCache = { accessToken: null, expiresAtMs: 0 };
 
@@ -132,7 +137,7 @@ async function getConstantContactAccessToken() {
     );
     if (tokenRes.status === 429) {
       throw new Error(
-        'Constant Contact temporarily rate-limited token requests. Wait a few minutes and try again; avoid double token calls after a failed refresh.'
+        'Constant Contact temporarily rate-limited token requests. Wait a few minutes and try again; avoid double token calls after a failed token refresh.'
       );
     }
     const msg =
@@ -152,6 +157,47 @@ async function getConstantContactAccessToken() {
     expiresAtMs: now + expiresInSec * 1000,
   };
   return accessToken;
+}
+
+/**
+ * Submits the Join the Movement payload to HubSpot's captured form.
+ * The captured form was created from the external NBBL HTML form, so the
+ * submitted field names intentionally match the website form: name, email,
+ * and message.
+ */
+async function syncHubSpotForm({ name, email, message }) {
+  const payload = {
+    fields: [
+      { name: 'name', value: name },
+      { name: 'email', value: email },
+      ...(message ? [{ name: 'message', value: message }] : []),
+    ],
+  };
+
+  const hubspotRes = await fetch(HUBSPOT_SUBMIT_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const hubspotJson = await hubspotRes.json().catch(() => ({}));
+
+  if (!hubspotRes.ok) {
+    console.error(
+      '[contact] HubSpot Forms API response:',
+      hubspotRes.status,
+      JSON.stringify(hubspotJson)
+    );
+    const msg =
+      hubspotJson.message ||
+      hubspotJson.error ||
+      `HubSpot form submission failed (${hubspotRes.status})`;
+    throw new Error(msg);
+  }
+
+  return hubspotJson;
 }
 
 /**
@@ -262,6 +308,17 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: error.message || 'Failed to send email.' });
     }
 
+    let hubspotSync = 'failed';
+    try {
+      await syncHubSpotForm({ name, email, message });
+      hubspotSync = 'ok';
+    } catch (hubspotErr) {
+      console.error(
+        '[contact] HubSpot sync failed:',
+        hubspotErr && hubspotErr.message ? hubspotErr.message : hubspotErr
+      );
+    }
+
     let ccSync = 'off';
     if (isConstantContactConfigured()) {
       ccSync = 'failed';
@@ -284,6 +341,7 @@ module.exports = async (req, res) => {
       ok: true,
       id: data && data.id,
       ccSync,
+      hubspotSync,
     });
   } catch (err) {
     return res.status(500).json({
