@@ -8,7 +8,6 @@ const HUBSPOT_FORM_GUID =
   process.env.HUBSPOT_FORM_GUID || 'e51254fe-9f3f-4de3-93b9-875abb686ba7';
 const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
 
-/** In-process cache so we do not refresh the access token on every request. */
 let ccTokenCache = { accessToken: null, expiresAtMs: 0 };
 
 const DEFAULT_TO = [
@@ -161,14 +160,15 @@ async function getConstantContactAccessToken() {
 
 /**
  * Submits the Join the Movement payload to HubSpot's captured form.
- * The captured form was created from the external NBBL HTML form, so the
- * submitted field names intentionally match the website form: name, email,
- * and message.
+ * HubSpot contact names use the standard firstname and lastname fields.
+ * The website collects one full-name field, so split it before submission.
  */
 async function syncHubSpotForm({ name, email, message }) {
+  const { first_name, last_name } = splitDisplayName(name);
   const payload = {
     fields: [
-      { name: 'name', value: name },
+      ...(first_name ? [{ name: 'firstname', value: first_name }] : []),
+      ...(last_name ? [{ name: 'lastname', value: last_name }] : []),
       { name: 'email', value: email },
       ...(message ? [{ name: 'message', value: message }] : []),
     ],
