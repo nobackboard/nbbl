@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Join the Movement confirmation */
+.stay-contact-status.is-ok {
+  font-size: 0;
+}
+
+.stay-contact-status.is-ok::after {
+  content: "Thanks — you’re now on the NBBL email list.";
+  font-size: 0.875rem;
+}
