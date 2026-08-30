@@ -160,15 +160,18 @@ async function getConstantContactAccessToken() {
 
 /**
  * Submits the Join the Movement payload to HubSpot's captured form.
- * HubSpot contact names use the standard firstname and lastname fields.
- * The website collects one full-name field, so split it before submission.
+ *
+ * The HubSpot form used by this site is configured to capture the standard
+ * firstname property, but it does not reliably persist lastname from this
+ * integration. The website intentionally collects one full-name field, so
+ * send the complete entered name to firstname. This prevents HubSpot from
+ * truncating a submitted name such as "Michael Evans" to just "Michael".
  */
 async function syncHubSpotForm({ name, email, message }) {
-  const { first_name, last_name } = splitDisplayName(name);
+  const fullName = String(name || '').trim().slice(0, 100);
   const payload = {
     fields: [
-      ...(first_name ? [{ name: 'firstname', value: first_name }] : []),
-      ...(last_name ? [{ name: 'lastname', value: last_name }] : []),
+      ...(fullName ? [{ name: 'firstname', value: fullName }] : []),
       { name: 'email', value: email },
       ...(message ? [{ name: 'message', value: message }] : []),
     ],
