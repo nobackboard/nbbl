@@ -100,15 +100,16 @@ This repo keeps **`index.html`** and static assets at the **project root** (not 
 - `.env.example` — documented env vars
 - `vercel.json` — build output directory (root) for static files + `api/` functions
 - `AGENTS.md` — notes for AI/human contributors (Vercel practices)
-- `Gym Annoucement.png` — hero gym announcement graphic (links to `#the-gym`)
-- `Gym Annoucement 2.png` — The Gym section announcement graphic
-- `Gym Annoucement 3.png` — Get Ready for Gilbert graphic (links to `#stay-in-touch`)
+- `Gym Annoucement.png` — hero gym announcement graphic (links to [nobackboardbasketballgym.com](https://nobackboardbasketballgym.com/))
+- `Gym Annoucement 2.png` — The Gym section announcement graphic (same gym site link)
+- `Gym Annoucement 3.png` — Get Ready for Gilbert graphic (same gym site link)
 
 ## Recent changes
 
-- **Showcase Gym announcement graphics:** Text banners replaced with three graphics. Hero uses **`Gym Annoucement.png`** (links to `#the-gym`). The Gym copy uses **`Gym Annoucement 2.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3.png`** (links to `#stay-in-touch`).
+- **Gilbert gym site CTAs:** The yellow **Gilbert Gym Opening 9/1/26** nav button and all three Showcase Gym announcement graphics (`Gym Annoucement.png`, `Gym Annoucement 2.png`, `Gym Annoucement 3.png`) open [https://nobackboardbasketballgym.com/](https://nobackboardbasketballgym.com/) in a new tab. **Join the Movement** still goes to `#stay-in-touch`. The Gym nav/footer menu items still scroll to `#the-gym`.
+- **Showcase Gym announcement graphics:** Text banners replaced with three graphics. Hero uses **`Gym Annoucement.png`**. The Gym copy uses **`Gym Annoucement 2.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3.png`**.
 - **Gilbert gym copy and SEO:** Title, description, and Open Graph/Twitter tags now lead with the NBBL Showcase Gym in Gilbert, Arizona (operations begin September 1, 2026). The Gym section copy frames Gilbert as the first physical operating node.
-- **Nav and footer CTAs:** Yellow nav button is **Gilbert Gym Opening 9/1/26** (scrolls to `#the-gym`). **Support Showcase Gym** GoFundMe lives in the footer Join column.
+- **Nav and footer CTAs:** Yellow nav button is **Gilbert Gym Opening 9/1/26** (gym site). **Support Showcase Gym** GoFundMe lives in the footer Join column.
 - **Constant Contact:** Optional sync of signups to a contact list via V3 `sign_up_form` after Resend succeeds.
 - **Tailwind production build:** Replaced Play CDN with CLI-built **`tw.css`** and `npm run build` / `build:css` for Vercel.
 - **Brand accent (site-wide):** Primary accent **`#E70910`** (logo red); yellow CTAs **`#FFE500`** with black text.
