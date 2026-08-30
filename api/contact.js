@@ -3,7 +3,10 @@ const { Resend } = require('resend');
 const HUBSPOT_PORTAL_ID = process.env.HUBSPOT_PORTAL_ID || '247117755';
 const HUBSPOT_FORM_GUID =
   process.env.HUBSPOT_FORM_GUID || 'e51254fe-9f3f-4de3-93b9-875abb686ba7';
-const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+const HUBSPOT_PRIVATE_APP_TOKEN = process.env.HUBSPOT_PRIVATE_APP_TOKEN || '';
+const HUBSPOT_SUBMIT_URL = HUBSPOT_PRIVATE_APP_TOKEN
+  ? `https://api.hsforms.com/submissions/v3/integration/secure/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`
+  : `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
 
 const DEFAULT_TO = [
   'helpkeepmymoney@gmail.com',
@@ -18,28 +21,52 @@ const TO_EMAILS = parsedTo.length > 0 ? parsedTo : DEFAULT_TO;
 const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL || 'NBBL Website <contact@thecpi.network>';
 
+function getCookie(req, name) {
+  const cookieHeader = req.headers && req.headers.cookie;
+  if (!cookieHeader) return '';
+
+  const match = cookieHeader
+    .split(';')
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${name}=`));
+
+  if (!match) return '';
+  return decodeURIComponent(match.slice(name.length + 1));
+}
+
 /**
  * Submits the Join the Movement payload to HubSpot's captured form.
  *
- * The website intentionally collects one full-name field. Send the complete
- * entered name to HubSpot's standard firstname field so a name such as
- * "Michael Evans" is preserved in the contact record.
+ * The existing HubSpot contact property `message` is intentionally used for
+ * the visitor's optional message. When a private app token is configured,
+ * the authenticated Forms API allows CRM properties that are not currently
+ * declared on the captured form definition.
  */
-async function syncHubSpotForm({ name, email, message }) {
+async function syncHubSpotForm({ name, email, message, hutk }) {
   const fullName = String(name || '').trim().slice(0, 100);
-  const payload = {
-    fields: [
-      ...(fullName ? [{ name: 'firstname', value: fullName }] : []),
-      { name: 'email', value: email },
-      ...(message ? [{ name: 'message', value: message }] : []),
-    ],
+  const fields = [
+    ...(fullName ? [{ name: 'firstname', value: fullName }] : []),
+    { name: 'email', value: email },
+    ...(message ? [{ name: 'message', value: message }] : []),
+  ];
+
+  const payload = { fields };
+
+  if (hutk) {
+    payload.context = { hutk };
+  }
+
+  const headers = {
+    'Content-Type': 'application/json',
   };
+
+  if (HUBSPOT_PRIVATE_APP_TOKEN) {
+    headers.Authorization = `Bearer ${HUBSPOT_PRIVATE_APP_TOKEN}`;
+  }
 
   const hubspotRes = await fetch(HUBSPOT_SUBMIT_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify(payload),
   });
 
@@ -87,6 +114,7 @@ module.exports = async (req, res) => {
   const email = String(body.email || '').trim();
   const message = String(body.message || '').trim();
   const honeypot = String(body._gotcha || '').trim();
+  const hutk = getCookie(req, 'hubspotutk');
 
   if (honeypot) {
     return res.status(200).json({ ok: true });
@@ -126,7 +154,7 @@ module.exports = async (req, res) => {
 
     let hubspotSync = 'failed';
     try {
-      await syncHubSpotForm({ name, email, message });
+      await syncHubSpotForm({ name, email, message, hutk });
       hubspotSync = 'ok';
     } catch (hubspotErr) {
       console.error(
