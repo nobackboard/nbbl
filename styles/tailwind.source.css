@@ -11,3 +11,8 @@
   content: "Thanks — you’re now on the NBBL email list.";
   font-size: 0.875rem;
 }
+
+/* Replace the form with the confirmation after a successful submission */
+#stay-in-touch:has(#stay-contact-status.is-ok) #stay-contact-form {
+  display: none;
+}
