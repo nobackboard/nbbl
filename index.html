@@ -540,6 +540,9 @@
                     }
                     statusEl.textContent = msg;
                     statusEl.classList.add('is-ok');
+                    if (typeof window.trackEvent === 'function') {
+                        window.trackEvent('waitlist_submit', { form: 'join_the_movement' });
+                    }
                     form.reset();
                 })
                 .catch(function (err) {
@@ -552,6 +555,8 @@
         });
     })();
     </script>
+    <script src="/ga-config.js"></script>
+    <script defer src="/ga-analytics.js"></script>
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
