@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  var measurementId = (window.__GA_MEASUREMENT_ID__ || '').trim();
+  var measurementId =
+    (window.__GA_MEASUREMENT_ID__ || '').trim() || 'G-F7BQEEZ5DM';
 
   function noopTrackEvent() {}
 
