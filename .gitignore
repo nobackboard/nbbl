@@ -3,3 +3,6 @@ node_modules/
 .env.local
 .env*.local
 .vercel
+.wrangler
+.dev.vars
+worker-configuration.d.ts

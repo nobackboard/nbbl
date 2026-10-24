@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nbbl-site",
+  "main": "./src/worker.js",
+  "compatibility_date": "2026-10-20",
+  "workers_dev": false,
+  "preview_urls": false,
+  // Custom Domains nobackboard.com + remixed.nobackboard.com are attached in the dashboard.
+  // Do not add routes here — nbbl-founding owns nobackboard.com/founding*.
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none"
+  },
+  "vars": {
+    "RESEND_FROM_EMAIL": "members@nobackboard.com"
+  }
+}

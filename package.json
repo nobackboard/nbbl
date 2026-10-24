@@ -4,12 +4,15 @@
   "scripts": {
     "build:css": "tailwindcss -i ./styles/tailwind.source.css -o ./tw.css --minify",
     "build:ga-config": "node scripts/write-ga-config.mjs",
-    "build": "npm run build:css && npm run build:ga-config"
+    "build": "npm run build:css && npm run build:ga-config",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:cf": "npm run deploy"
   },
   "dependencies": {
     "resend": "^4.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "wrangler": "^4.152.0"
   }
 }
