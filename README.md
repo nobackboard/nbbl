@@ -100,17 +100,17 @@ This repo keeps **`index.html`** and static assets at the **project root** (not 
 - `.env.example` — documented env vars
 - `vercel.json` — build output directory (root) for static files + `api/` functions
 - `AGENTS.md` — notes for AI/human contributors (Vercel practices)
-- `Gym Annoucement.png` — hero gym announcement graphic (links to [nobackboardbasketballgym.com](https://nobackboardbasketballgym.com/))
-- `Gym Annoucement 2.png` — The Gym section announcement graphic (same gym site link)
-- `Gym Annoucement 3.png` — Get Ready for Gilbert graphic (same gym site link)
+- `Gym Annoucement Updated.png` — hero gym announcement graphic (links to [nobackboardbasketballgym.com](https://nobackboardbasketballgym.com/))
+- `Gym Annoucement 2 Updated.png` — The Gym section announcement graphic (same gym site link)
+- `Gym Annoucement 3 Updated.png` — Get Ready for Gilbert graphic (same gym site link)
 
 ## Recent changes
 
 - **Homepage CTAs:** From 1280px up, desktop nav order is The Game → Ecosystem → Tech → Gym → Watch → Get Updates (`#stay-in-touch`), then outlined **Explore the Gilbert Gym** ([nobackboardbasketballgym.com](https://nobackboardbasketballgym.com/)) and filled red **Become a Founding Member** (`/founding`). Below 1280px the header keeps the hamburger; gym CTA shows from 1024px (also in the panel).
 - **Get NBBL Updates:** Contact block remains **`#stay-in-touch`** (heading id **`get-updates-heading`**); form still posts to **`/api/contact`**.
 - **Showcase Gym announcement graphics:** Hero / Gym section / closing card use the Updated PNGs; all three open the gym site in a new tab. Meta and alt copy say the Gilbert gym is **now open**.
-- **Gilbert gym site CTAs:** Showcase Gym announcement graphics (`Gym Annoucement.png`, `Gym Annoucement 2.png`, `Gym Annoucement 3.png`) open [https://nobackboardbasketballgym.com/](https://nobackboardbasketballgym.com/) in a new tab. The Gym nav/footer menu items still scroll to `#the-gym`.
-- **Showcase Gym announcement graphics (layout):** Hero uses **`Gym Annoucement.png`**. The Gym copy uses **`Gym Annoucement 2.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3.png`**.
+- **Gilbert gym site CTAs:** Showcase Gym announcement graphics (`Gym Annoucement Updated.png`, `Gym Annoucement 2 Updated.png`, `Gym Annoucement 3 Updated.png`) open [https://nobackboardbasketballgym.com/](https://nobackboardbasketballgym.com/) in a new tab. The Gym nav/footer menu items still scroll to `#the-gym`.
+- **Showcase Gym announcement graphics (layout):** Hero uses **`Gym Annoucement Updated.png`**. The Gym copy uses **`Gym Annoucement 2 Updated.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3 Updated.png`**.
 - **Gilbert gym copy and SEO:** Title, description, and Open Graph/Twitter tags lead with the NBBL Showcase Gym in Gilbert, Arizona (now open). The Gym section copy frames Gilbert as the first physical operating node.
 - **Constant Contact:** Optional sync of signups to a contact list via V3 `sign_up_form` after Resend succeeds.
 - **Tailwind production build:** Replaced Play CDN with CLI-built **`tw.css`** and `npm run build` / `build:css` for Vercel.

@@ -540,7 +540,6 @@
         var panel = document.getElementById('nav-mobile-panel');
         if (!btn || !panel) return;
 
-        var lastFocus = null;
         var mq = window.matchMedia('(min-width: 1280px)');
 
         function panelLinks() {
@@ -553,7 +552,6 @@
 
         function setOpen(open) {
             if (open) {
-                lastFocus = document.activeElement;
                 panel.hidden = false;
                 panel.classList.add('is-open');
                 btn.setAttribute('aria-expanded', 'true');
@@ -568,7 +566,6 @@
                 btn.setAttribute('aria-label', 'Open menu');
                 document.body.classList.remove('nav-menu-open');
                 btn.focus();
-                lastFocus = null;
             }
         }
 
