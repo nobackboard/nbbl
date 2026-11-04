@@ -1,6 +1,6 @@
 # NBBL Landing
 
-Static marketing site for **No Backboard Basketball League** (NBBL): hero, game rules, ecosystem carousel, tech videos, **NBBL Showcase Gym** (Gilbert, Arizona — operations begin September 1, 2026), social embeds, and **Join the Movement** contact form.
+Static marketing site for **No Backboard Basketball League** (NBBL): hero, game rules, ecosystem carousel, tech videos, **NBBL Showcase Gym** (Gilbert, Arizona — now open), social embeds, and **Get NBBL Updates** contact form.
 
 ## Tech stack
 
@@ -106,12 +106,9 @@ This repo keeps **`index.html`** and static assets at the **project root** (not 
 
 ## Recent changes
 
-- **Gilbert gym site CTAs:** The yellow **Gilbert Gym Opening 9/1/26** nav button and all three Showcase Gym announcement graphics (`Gym Annoucement.png`, `Gym Annoucement 2.png`, `Gym Annoucement 3.png`) open [https://nobackboardbasketballgym.com/](https://nobackboardbasketballgym.com/) in a new tab. **Join the Movement** still goes to `#stay-in-touch`. The Gym nav/footer menu items still scroll to `#the-gym`.
-- **Showcase Gym announcement graphics:** Text banners replaced with three graphics. Hero uses **`Gym Annoucement.png`**. The Gym copy uses **`Gym Annoucement 2.png`**. The Get Ready for Gilbert card uses **`Gym Annoucement 3.png`**.
-- **Gilbert gym copy and SEO:** Title, description, and Open Graph/Twitter tags now lead with the NBBL Showcase Gym in Gilbert, Arizona (operations begin September 1, 2026). The Gym section copy frames Gilbert as the first physical operating node.
-- **Nav and footer CTAs:** Yellow nav button is **Gilbert Gym Opening 9/1/26** (gym site). **Support Showcase Gym** GoFundMe lives in the footer Join column.
+- **Homepage CTAs:** Desktop nav order is The Game → Ecosystem → Tech → Gym → Watch → Get Updates (`#stay-in-touch`), then outlined **Explore the Gilbert Gym** ([nobackboardbasketballgym.com](https://nobackboardbasketballgym.com/)) and filled red **Become a Founding Member** (`/founding`). Mobile header shows Founding Member plus an accessible hamburger menu.
+- **Get NBBL Updates:** Contact block remains **`#stay-in-touch`** (heading id **`get-updates-heading`**); form still posts to **`/api/contact`**.
+- **Showcase Gym announcement graphics:** Hero / Gym section / closing card use the Updated PNGs; all three open the gym site in a new tab. Meta and alt copy say the Gilbert gym is **now open**.
 - **Constant Contact:** Optional sync of signups to a contact list via V3 `sign_up_form` after Resend succeeds.
 - **Tailwind production build:** Replaced Play CDN with CLI-built **`tw.css`** and `npm run build` / `build:css` for Vercel.
-- **Brand accent (site-wide):** Primary accent **`#E70910`** (logo red); yellow CTAs **`#FFE500`** with black text.
-- **PlayCenter campaign (The Tech):** CTA card with `id="playcenter-demo"` linking to the Indiegogo campaign (`https://www.indiegogo.com/en/projects/nobackboards/playcenter-by-nbbl`) and CTAs updated to **Back PlayCenter on Indiegogo** (links open in a new tab).
-- **Join the Movement:** Contact block id **`#stay-in-touch`**; form submits to **`/api/contact`**.
+- **Brand accent (site-wide):** Primary accent **`#E70910`** (logo red); yellow CTAs **`#FFE500`**.
