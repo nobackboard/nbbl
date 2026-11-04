@@ -35,7 +35,7 @@ function getCookie(req, name) {
 }
 
 /**
- * Submits the Join the Movement payload to HubSpot's captured form.
+ * Submits the Get NBBL Updates (stay-in-touch) payload to HubSpot's captured form.
  *
  * The existing HubSpot contact property `message` is intentionally used for
  * the visitor's optional message. When a private app token is configured,

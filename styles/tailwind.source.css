@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Join the Movement confirmation */
+/* Get NBBL Updates confirmation */
 .stay-contact-status.is-ok {
   font-size: 0;
 }

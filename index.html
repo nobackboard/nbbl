@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>NBBL | NBBL Showcase Gym — Gilbert, Arizona</title>
-    <meta name="description" content="No Backboard Basketball League (NBBL) has secured its first physical operating location — the NBBL Showcase Gym in Gilbert, Arizona. Operations begin September 1, 2026. Basketball training, development, events, and content.">
+    <meta name="description" content="No Backboard Basketball League (NBBL) has opened its first physical location: the NBBL Showcase Gym in Gilbert, Arizona, now open for basketball training, development, events, and content.">
     <meta property="og:title" content="NBBL | NBBL Showcase Gym — Gilbert, Arizona">
-    <meta property="og:description" content="NBBL has secured its first physical operating location in Gilbert, Arizona. The NBBL Showcase Gym opens September 1, 2026 — basketball training, development, events, and content.">
+    <meta property="og:description" content="The NBBL Showcase Gym in Gilbert, Arizona is now open — basketball training, development, events, and content.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://remixed.nobackboard.com/">
     <meta property="og:image" content="https://remixed.nobackboard.com/26bb64ec-55ae-4d63-8f32-7538ca171879_1000015893.jpeg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="NBBL | NBBL Showcase Gym — Gilbert, Arizona">
-    <meta name="twitter:description" content="NBBL has secured its first physical operating location in Gilbert, Arizona. The NBBL Showcase Gym opens September 1, 2026.">
+    <meta name="twitter:description" content="The NBBL Showcase Gym in Gilbert, Arizona is now open — basketball training, development, events, and content.">
     <meta name="twitter:image" content="https://remixed.nobackboard.com/26bb64ec-55ae-4d63-8f32-7538ca171879_1000015893.jpeg">
     <link rel="stylesheet" href="tw.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; overflow-x: clip; }
         h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: -0.02em; }
         .hero-gradient { background: linear-gradient(0deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%); }
         .accent-border { border-left: 4px solid #E70910; }
@@ -79,35 +79,161 @@
         .stay-contact-status { min-height: 1.25rem; font-size: 0.875rem; text-align: center; color: rgba(255,255,255,0.55); }
         .stay-contact-status.is-ok { color: #86efac; }
         .stay-contact-status.is-err { color: #fca5a5; }
-        html { scroll-behavior: smooth; }
-        @keyframes gym-cta-flash {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.55; filter: brightness(1.35); }
+        html { scroll-behavior: smooth; overflow-x: clip; }
+        .nav-cta-gym {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            background: transparent;
+            border: 2px solid #FFE500;
+            color: #FFE500;
+            padding: 0.45rem 0.9rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.25;
+            flex-shrink: 0;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
-        .gym-cta-flash { animation: gym-cta-flash 1s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) {
-            .gym-cta-flash { animation: none; }
+        .nav-cta-gym:hover { background: rgba(255, 229, 0, 0.12); color: #FFE500; }
+        .nav-cta-gym:focus-visible { outline: 2px solid #FFE500; outline-offset: 3px; }
+        /* Show gym CTA from 1024px; below that it lives in the hamburger panel */
+        @media (min-width: 1024px) {
+            .nav-cta-gym {
+                display: inline-flex;
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+                letter-spacing: 0.03em;
+            }
         }
+        .nav-cta-founding {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #E70910;
+            color: #fff;
+            max-width: 7.5rem;
+            padding: 0.375rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            text-align: center;
+            line-height: 1.15;
+            flex-shrink: 0;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .nav-cta-founding:hover { opacity: 0.9; transform: scale(1.05); }
+        .nav-cta-founding:focus-visible { outline: 2px solid #E70910; outline-offset: 3px; }
+        @media (min-width: 768px) {
+            .nav-cta-founding {
+                max-width: none;
+                white-space: nowrap;
+                padding: 0.45rem 0.85rem;
+                font-size: 0.75rem;
+                letter-spacing: 0.03em;
+            }
+        }
+        @media (min-width: 1024px) {
+            .nav-cta-founding {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+        }
+        .nav-menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            flex-shrink: 0;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .nav-menu-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+        .nav-menu-btn:focus-visible { outline: 2px solid #E70910; outline-offset: 3px; }
+        /* Inline text links take over at xl (1280px); keep hamburger until then */
+        @media (min-width: 1280px) { .nav-menu-btn { display: none; } }
+        .nav-mobile-panel {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #050505;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 0.75rem 1.25rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+        }
+        .nav-mobile-panel.is-open { display: block; }
+        @media (min-width: 1280px) {
+            .nav-mobile-panel,
+            .nav-mobile-panel.is-open { display: none !important; }
+        }
+        .nav-mobile-panel a {
+            display: block;
+            padding: 0.75rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #fff;
+            border-radius: 0.5rem;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .nav-mobile-panel a:hover { background: rgba(255,255,255,0.06); color: #E70910; }
+        .nav-mobile-panel a:focus-visible { outline: 2px solid #E70910; outline-offset: 2px; }
+        .nav-mobile-panel .nav-mobile-gym {
+            margin-top: 0.5rem;
+            text-align: center;
+            border: 2px solid #FFE500;
+            color: #FFE500;
+            border-radius: 9999px;
+        }
+        .nav-mobile-panel .nav-mobile-gym:hover { background: rgba(255, 229, 0, 0.12); color: #FFE500; }
+        body.nav-menu-open { overflow: hidden; }
     </style>
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-3 py-3 md:px-6 md:py-4 flex justify-between items-center gap-2 glass">
-        <a href="#top" class="flex items-center gap-1.5 md:gap-3 shrink-0">
-            <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--nav max-w-[2.75rem] md:max-w-[10rem]" aria-hidden="true">
-            <span class="text-lg md:text-2xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
-        </a>
-        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
-            <a href="#the-game" class="hover:text-[#E70910] transition">The Game</a>
-            <a href="#the-ecosystem" class="hover:text-[#E70910] transition">The Ecosystem</a>
-            <a href="#the-tech" class="hover:text-[#E70910] transition">The Tech</a>
-            <a href="#the-gym" class="hover:text-[#E70910] transition">The Gym</a>
-            <a href="#watch" class="hover:text-[#E70910] transition">Watch</a>
+    <nav class="fixed w-full z-50 glass" aria-label="Primary">
+        <div class="px-3 py-3 md:px-6 md:py-4 flex justify-between items-center gap-2 md:gap-4">
+            <a href="#top" class="flex items-center gap-1.5 md:gap-3 shrink-0">
+                <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--nav max-w-[2.75rem] md:max-w-[10rem]" aria-hidden="true">
+                <span class="text-lg md:text-2xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
+            </a>
+            <div class="flex items-center space-x-1.5 md:space-x-2 lg:space-x-3 min-w-0">
+                <div class="hidden xl:flex items-center space-x-2.5 lg:space-x-3.5 text-xs lg:text-[0.8125rem] font-bold uppercase tracking-widest">
+                    <a href="#the-game" class="hover:text-[#E70910] transition whitespace-nowrap">The Game</a>
+                    <a href="#the-ecosystem" class="hover:text-[#E70910] transition whitespace-nowrap">The Ecosystem</a>
+                    <a href="#the-tech" class="hover:text-[#E70910] transition whitespace-nowrap">The Tech</a>
+                    <a href="#the-gym" class="hover:text-[#E70910] transition whitespace-nowrap">The Gym</a>
+                    <a href="#watch" class="hover:text-[#E70910] transition whitespace-nowrap">Watch</a>
+                    <a href="#stay-in-touch" class="hover:text-[#E70910] transition whitespace-nowrap">Get Updates</a>
+                </div>
+                <button type="button" id="nav-menu-btn" class="nav-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+                <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="nav-cta-gym" aria-label="Explore the Gilbert Gym">Explore the Gilbert Gym</a>
+                <a href="https://nobackboard.com/founding" class="nav-cta-founding" aria-label="Become a Founding Member">Become a Founding Member</a>
+            </div>
         </div>
-        <div class="flex flex-row-reverse md:flex-row items-center gap-1.5 md:gap-3 min-w-0">
-            <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="gym-cta-flash inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#FFE500] px-2 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-[10px] md:text-sm uppercase tracking-wide text-black text-center leading-tight hover:opacity-90 shrink-0"><span>Gilbert Showcase</span><span>Gym Open!</span></a>
-            <a href="https://nobackboard.com/founding" target="_blank" rel="noopener noreferrer" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#E70910] px-2 py-1.5 md:px-6 md:py-2 rounded-full font-bold text-[10px] md:text-sm uppercase text-center leading-tight hover:scale-105 transition transform shrink-0"><span>Join The</span><span>Movement</span></a>
+        <div id="nav-mobile-panel" class="nav-mobile-panel" hidden>
+            <a href="#the-game">The Game</a>
+            <a href="#the-ecosystem">The Ecosystem</a>
+            <a href="#the-tech">The Tech</a>
+            <a href="#the-gym">The Gym</a>
+            <a href="#watch">Watch</a>
+            <a href="#stay-in-touch">Get Updates</a>
+            <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="nav-mobile-gym">Explore the Gilbert Gym</a>
         </div>
     </nav>
 
@@ -136,7 +262,7 @@
             </div>
 
             <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="block mt-10 md:mt-12 w-full rounded-xl overflow-hidden hover:opacity-95 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]">
-                <img src="Gym Annoucement Updated.png" alt="NBBL Showcase Gym in Gilbert, Arizona — operations begin September 1, 2026. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
+                <img src="Gym Annoucement Updated.png" alt="NBBL Showcase Gym in Gilbert, Arizona is now open. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
             </a>
 
             <p class="hero-intro mt-10 md:mt-14 max-w-4xl mx-auto text-center text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed">
@@ -232,7 +358,7 @@
                     </div>
                     <p>NBBL has secured its first physical operating location in Gilbert, Arizona. The <strong class="text-gray-200 font-semibold">7,000+ square foot facility</strong> at <strong class="text-gray-200 font-semibold">Eduprize Charter School</strong> becomes the first physical node in NBBL's distributed basketball infrastructure network. The gym is now accepting teams and clubs to schedule trainings at <a href="https://nobackboardbasketballgym.com/" class="text-[#E70910] hover:underline" target="_blank" rel="noopener noreferrer">nobackboardbasketballgym.com</a>.</p>
                     <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="block rounded-xl overflow-hidden hover:opacity-95 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]">
-                        <img src="Gym Annoucement 2 Updated.png" alt="NBBL Showcase Gym in Gilbert, Arizona — operations begin September 1, 2026. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto rounded-xl" decoding="async">
+                        <img src="Gym Annoucement 2 Updated.png" alt="NBBL Showcase Gym in Gilbert, Arizona is now open. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto rounded-xl" decoding="async">
                     </a>
                     <p>The gym includes:</p>
                     <ul class="list-disc list-outside space-y-2 pl-5 marker:text-[#E70910]">
@@ -287,7 +413,7 @@
                     <iframe src="https://www.youtube.com/embed/8Yh0daaJOg4?rel=0&modestbranding=1" title="NBBL — The Gym" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="block max-w-3xl mx-auto rounded-2xl overflow-hidden hover:opacity-95 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]">
-                    <img src="Gym Annoucement 3 Updated.png" alt="Get ready for Gilbert — NBBL Showcase Gym opens September 1, 2026. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
+                    <img src="Gym Annoucement 3 Updated.png" alt="Get ready for Gilbert — the NBBL Showcase Gym is now open. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
                 </a>
             </div>
     </section>
@@ -342,42 +468,10 @@
         </div>
     </section>
 
-    <!-- UHoopers Society (Community/Ownership) -->
-    <section id="uhoopers" class="hidden py-24 px-6 relative overflow-hidden scroll-mt-24" aria-hidden="true">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#E70910] rounded-full blur-[150px] opacity-20"></div>
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-            <div class="md:w-1/2">
-                <h2 class="text-5xl md:text-7xl mb-6">UHoopers <br><span class="text-[#E70910]">Society</span></h2>
-                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                    We aren't just a league; we're a decentralized athletic community. Own your data, participate in governance, and access exclusive NIL literacy training. Join the 1% who are building the future of sports ownership.
-                </p>
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> NIL Opportunities for Athletes
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> Web3 Digital Ownership
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-[#E70910] rotate-45"></div> Direct Community Impact
-                    </li>
-                </ul>
-                <a href="https://www.nobackboard.com/registration" class="inline-block bg-[#E70910] px-8 py-4 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-[#E70910]/20">Enter the Society</a>
-            </div>
-            <div class="md:w-1/2 glass rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition duration-500">
-                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-500" alt="NBA Players Training">
-                <div class="mt-6 text-center">
-                    <p class="text-sm uppercase tracking-widest text-gray-400">Founders Collection</p>
-                    <p class="text-2xl font-bold italic">RECLAIM THE GAME</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Join the Movement -->
-    <section id="stay-in-touch" class="py-20 md:py-24 px-6 max-w-7xl mx-auto scroll-mt-24 border-t border-white/10" aria-labelledby="join-the-movement-heading">
+    <!-- Get NBBL Updates -->
+    <section id="stay-in-touch" class="py-20 md:py-24 px-6 max-w-7xl mx-auto scroll-mt-24 border-t border-white/10" aria-labelledby="get-updates-heading">
         <div class="max-w-xl mx-auto">
-            <h2 id="join-the-movement-heading" class="text-5xl md:text-6xl mb-4 text-center">Join the Movement</h2>
+            <h2 id="get-updates-heading" class="text-5xl md:text-6xl mb-4 text-center">Get NBBL Updates</h2>
             <p class="text-gray-400 text-center mb-10 leading-relaxed">Join our contact list for NBBL news and updates. Add a message if you’d like—we read every note. Better yet, become a Founding Member of our NBBL platform at <a href="https://nobackboard.com/founding" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E70910] underline underline-offset-2 hover:text-white transition">https://nobackboard.com/founding</a>.</p>
             <p id="stay-contact-status" class="stay-contact-status mb-4" role="status" aria-live="polite"></p>
             <form id="stay-contact-form" class="glass rounded-2xl p-6 md:p-8 border border-white/10 space-y-6" action="#" method="post" novalidate>
@@ -421,7 +515,12 @@
             </div>
             <div>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Join</h4>
-                <a href="https://nobackboard.com/founding" target="_blank" rel="noopener noreferrer" class="inline-flex flex-col md:flex-row md:items-center md:gap-1 items-center justify-center bg-[#E70910] px-3 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition mb-8"><span>Join The</span><span>Movement</span></a>
+                <div class="mb-8 space-y-4">
+                    <a href="https://nobackboard.com/founding" class="inline-flex items-center justify-center max-w-full bg-[#E70910] px-3 py-2 md:px-4 md:py-2.5 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition" aria-label="Become a Founding Member">Become a Founding Member</a>
+                    <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
+                        <li><a href="#stay-in-touch" class="hover:text-[#E70910] transition">Get Updates</a></li>
+                    </ul>
+                </div>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Connect</h4>
                 <div class="flex space-x-4">
                     <a href="https://www.instagram.com/nobackboards/" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#E70910] transition" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
@@ -435,6 +534,90 @@
         </div>
     </footer>
 
+    <script>
+    (function () {
+        var btn = document.getElementById('nav-menu-btn');
+        var panel = document.getElementById('nav-mobile-panel');
+        if (!btn || !panel) return;
+
+        var mq = window.matchMedia('(min-width: 1280px)');
+
+        function panelLinks() {
+            return Array.prototype.slice.call(panel.querySelectorAll('a'));
+        }
+
+        function focusables() {
+            return [btn].concat(panelLinks());
+        }
+
+        function setOpen(open) {
+            if (open) {
+                panel.hidden = false;
+                panel.classList.add('is-open');
+                btn.setAttribute('aria-expanded', 'true');
+                btn.setAttribute('aria-label', 'Close menu');
+                document.body.classList.add('nav-menu-open');
+                var links = panelLinks();
+                if (links[0]) links[0].focus();
+            } else {
+                panel.classList.remove('is-open');
+                panel.hidden = true;
+                btn.setAttribute('aria-expanded', 'false');
+                btn.setAttribute('aria-label', 'Open menu');
+                document.body.classList.remove('nav-menu-open');
+                btn.focus();
+            }
+        }
+
+        function isOpen() {
+            return btn.getAttribute('aria-expanded') === 'true';
+        }
+
+        btn.addEventListener('click', function () {
+            setOpen(!isOpen());
+        });
+
+        panel.addEventListener('click', function (e) {
+            var t = e.target;
+            if (t && t.tagName === 'A') setOpen(false);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (!isOpen()) return;
+
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                setOpen(false);
+                return;
+            }
+
+            if (e.key !== 'Tab') return;
+
+            var nodes = focusables();
+            if (!nodes.length) return;
+
+            var first = nodes[0];
+            var last = nodes[nodes.length - 1];
+            var active = document.activeElement;
+
+            if (e.shiftKey) {
+                if (active === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else if (active === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+
+        function onMqChange() {
+            if (mq.matches && isOpen()) setOpen(false);
+        }
+        if (typeof mq.addEventListener === 'function') mq.addEventListener('change', onMqChange);
+        else if (typeof mq.addListener === 'function') mq.addListener(onMqChange);
+    })();
+    </script>
     <script>
     (function () {
         function initCarousel(rootId, trackId, prevId, nextId, dotsId) {

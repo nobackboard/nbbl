@@ -37,7 +37,7 @@ function getCookie(request, name) {
 const HUBSPOT_PAGE_NAME = 'NBBL | NBBL Showcase Gym — Gilbert, Arizona';
 
 /**
- * Submits Join the Movement data to HubSpot's PUBLIC (unauthenticated) Forms endpoint.
+ * Submits Get NBBL Updates (stay-in-touch) data to HubSpot's PUBLIC (unauthenticated) Forms endpoint.
  * No Authorization header: the NBBL private app token lacks the `forms` scope (403),
  * so the forms submit uses no token. HUBSPOT_PRIVATE_APP_TOKEN (optional) is used only by
  * syncHubSpotMessage below for the CRM message/note write.
