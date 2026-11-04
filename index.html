@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>NBBL | NBBL Showcase Gym — Gilbert, Arizona</title>
-    <meta name="description" content="No Backboard Basketball League (NBBL) has secured its first physical operating location — the NBBL Showcase Gym in Gilbert, Arizona is now open. Basketball training, development, events, and content.">
+    <meta name="description" content="No Backboard Basketball League (NBBL) has opened its first physical location: the NBBL Showcase Gym in Gilbert, Arizona, now open for basketball training, development, events, and content.">
     <meta property="og:title" content="NBBL | NBBL Showcase Gym — Gilbert, Arizona">
     <meta property="og:description" content="The NBBL Showcase Gym in Gilbert, Arizona is now open — basketball training, development, events, and content.">
     <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="tw.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; overflow-x: clip; }
         h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: -0.02em; }
         .hero-gradient { background: linear-gradient(0deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%); }
         .accent-border { border-left: 4px solid #E70910; }
@@ -79,7 +79,7 @@
         .stay-contact-status { min-height: 1.25rem; font-size: 0.875rem; text-align: center; color: rgba(255,255,255,0.55); }
         .stay-contact-status.is-ok { color: #86efac; }
         .stay-contact-status.is-err { color: #fca5a5; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
         .nav-cta-gym {
             display: none;
             align-items: center;
@@ -100,9 +100,14 @@
         }
         .nav-cta-gym:hover { background: rgba(255, 229, 0, 0.12); color: #FFE500; }
         .nav-cta-gym:focus-visible { outline: 2px solid #FFE500; outline-offset: 3px; }
-        @media (min-width: 768px) { .nav-cta-gym { display: inline-flex; } }
+        /* Show gym CTA from 1024px; below that it lives in the hamburger panel */
         @media (min-width: 1024px) {
-            .nav-cta-gym { padding: 0.5rem 1rem; font-size: 0.8125rem; letter-spacing: 0.03em; }
+            .nav-cta-gym {
+                display: inline-flex;
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+                letter-spacing: 0.03em;
+            }
         }
         .nav-cta-founding {
             display: inline-flex;
@@ -154,20 +159,21 @@
         }
         .nav-menu-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
         .nav-menu-btn:focus-visible { outline: 2px solid #E70910; outline-offset: 3px; }
-        @media (min-width: 768px) { .nav-menu-btn { display: none; } }
+        /* Inline text links take over at xl (1280px); keep hamburger until then */
+        @media (min-width: 1280px) { .nav-menu-btn { display: none; } }
         .nav-mobile-panel {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
-            background: rgba(5,5,5,0.97);
+            background: #050505;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 1rem 0.75rem 1.25rem;
             box-shadow: 0 12px 40px rgba(0,0,0,0.45);
         }
         .nav-mobile-panel.is-open { display: block; }
-        @media (min-width: 768px) {
+        @media (min-width: 1280px) {
             .nav-mobile-panel,
             .nav-mobile-panel.is-open { display: none !important; }
         }
@@ -205,7 +211,7 @@
                 <span class="text-lg md:text-2xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
             </a>
             <div class="flex items-center space-x-1.5 md:space-x-2 lg:space-x-3 min-w-0">
-                <div class="hidden md:flex items-center space-x-2.5 lg:space-x-3.5 text-xs lg:text-[0.8125rem] font-bold uppercase tracking-widest">
+                <div class="hidden xl:flex items-center space-x-2.5 lg:space-x-3.5 text-xs lg:text-[0.8125rem] font-bold uppercase tracking-widest">
                     <a href="#the-game" class="hover:text-[#E70910] transition whitespace-nowrap">The Game</a>
                     <a href="#the-ecosystem" class="hover:text-[#E70910] transition whitespace-nowrap">The Ecosystem</a>
                     <a href="#the-tech" class="hover:text-[#E70910] transition whitespace-nowrap">The Tech</a>
@@ -407,7 +413,7 @@
                     <iframe src="https://www.youtube.com/embed/8Yh0daaJOg4?rel=0&modestbranding=1" title="NBBL — The Gym" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="block max-w-3xl mx-auto rounded-2xl overflow-hidden hover:opacity-95 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E70910]">
-                    <img src="Gym Annoucement 3 Updated.png" alt="NBBL Showcase Gym in Gilbert, Arizona is now open. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
+                    <img src="Gym Annoucement 3 Updated.png" alt="Get ready for Gilbert — the NBBL Showcase Gym is now open. Training, content, community, opportunity." width="1600" height="900" class="w-full h-auto" decoding="async">
                 </a>
             </div>
     </section>
@@ -510,7 +516,7 @@
             <div>
                 <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Join</h4>
                 <div class="mb-8 space-y-4">
-                    <a href="https://nobackboard.com/founding" class="inline-flex items-center justify-center bg-[#E70910] px-3 py-2 md:px-6 md:py-2.5 rounded-full font-bold text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition whitespace-nowrap" aria-label="Become a Founding Member">Become a Founding Member</a>
+                    <a href="https://nobackboard.com/founding" class="inline-flex items-center justify-center max-w-full bg-[#E70910] px-3 py-2 md:px-4 md:py-2.5 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition" aria-label="Become a Founding Member">Become a Founding Member</a>
                     <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
                         <li><a href="#stay-in-touch" class="hover:text-[#E70910] transition">Get Updates</a></li>
                     </ul>
@@ -535,10 +541,14 @@
         if (!btn || !panel) return;
 
         var lastFocus = null;
-        var mq = window.matchMedia('(min-width: 768px)');
+        var mq = window.matchMedia('(min-width: 1280px)');
 
-        function firstLink() {
-            return panel.querySelector('a');
+        function panelLinks() {
+            return Array.prototype.slice.call(panel.querySelectorAll('a'));
+        }
+
+        function focusables() {
+            return [btn].concat(panelLinks());
         }
 
         function setOpen(open) {
@@ -549,19 +559,15 @@
                 btn.setAttribute('aria-expanded', 'true');
                 btn.setAttribute('aria-label', 'Close menu');
                 document.body.classList.add('nav-menu-open');
-                var link = firstLink();
-                if (link) link.focus();
+                var links = panelLinks();
+                if (links[0]) links[0].focus();
             } else {
                 panel.classList.remove('is-open');
                 panel.hidden = true;
                 btn.setAttribute('aria-expanded', 'false');
                 btn.setAttribute('aria-label', 'Open menu');
                 document.body.classList.remove('nav-menu-open');
-                if (lastFocus && typeof lastFocus.focus === 'function') {
-                    lastFocus.focus();
-                } else {
-                    btn.focus();
-                }
+                btn.focus();
                 lastFocus = null;
             }
         }
@@ -580,9 +586,31 @@
         });
 
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && isOpen()) {
+            if (!isOpen()) return;
+
+            if (e.key === 'Escape') {
                 e.preventDefault();
                 setOpen(false);
+                return;
+            }
+
+            if (e.key !== 'Tab') return;
+
+            var nodes = focusables();
+            if (!nodes.length) return;
+
+            var first = nodes[0];
+            var last = nodes[nodes.length - 1];
+            var active = document.activeElement;
+
+            if (e.shiftKey) {
+                if (active === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else if (active === last) {
+                e.preventDefault();
+                first.focus();
             }
         });
 
