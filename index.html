@@ -200,6 +200,7 @@
         .nav-mobile-panel .nav-mobile-gym:hover { background: rgba(255, 229, 0, 0.12); color: #FFE500; }
         body.nav-menu-open { overflow: hidden; }
 
+        @media (max-width: 767px) { #pillar-carousel-prev, #pillar-carousel-next { top: 26%; } .pillar-carousel-slide img { max-height: none; width: 100%; } #the-ecosystem picture > img[src="NBBL.png"] { max-width: 420px; margin: 0 auto; } }
         @media (max-width: 767px) { picture > img[src^="Gym Annoucement"] { max-width: 420px; margin: 0 auto; } }
         /* ---- Academy promo (banner + section) ---- */
         .academy-bar { position: absolute; top: 100%; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 40px; padding: .45rem 1rem; background: #FFE500; color: #0A0A0A; font-weight: 800; font-size: .8125rem; letter-spacing: .04em; text-transform: uppercase; text-align: center; line-height: 1.2; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
@@ -365,22 +366,22 @@
     <section id="the-ecosystem" class="py-12 md:py-20 px-6 max-w-7xl mx-auto scroll-mt-24" aria-label="The Ecosystem">
         <h2 class="text-5xl md:text-6xl mb-10 md:mb-14 text-center md:text-left">The Ecosystem</h2>
         <div class="flex justify-center mb-8 md:mb-12">
-            <img src="NBBL.png" alt="No Backboard Basketball League" width="1200" height="400" class="w-full max-w-4xl h-auto object-contain" loading="lazy" decoding="async">
+            <picture><source media="(max-width: 767px)" srcset="nbbl-league-mobile.webp" width="1080" height="1350"><img src="NBBL.png" alt="No Backboard Basketball League" width="1200" height="400" class="w-full max-w-4xl h-auto object-contain" loading="lazy" decoding="async"></picture>
         </div>
         <div class="relative max-w-4xl mx-auto outline-none" id="pillar-carousel" role="region" aria-roledescription="carousel" aria-label="The Ecosystem pillars carousel" tabindex="0">
             <div class="pillar-carousel-viewport glass border border-white/10">
                 <div class="pillar-carousel-track" id="pillar-carousel-track">
                     <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 4">
-                        <img src="Pillar1.png" alt="Pillar 1" width="400" height="400" loading="lazy" decoding="async">
+                        <picture><source media="(max-width: 767px)" srcset="pillar1-mobile.webp" width="1080" height="1350"><img src="Pillar1.png" alt="Pillar 01: The Athlete. Develop skill and brand; monetize performance and content; build long-term value and equity." width="400" height="400" loading="lazy" decoding="async"></picture>
                     </div>
                     <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
-                        <img src="Pillar2.png" alt="Pillar 2" width="400" height="400" loading="lazy" decoding="async">
+                        <picture><source media="(max-width: 767px)" srcset="pillar2-mobile.webp" width="1080" height="1350"><img src="Pillar2.png" alt="Pillar 02: The Coach and Trainer. Deliver elite training and development; build a scalable, sovereign business; monetize expertise beyond an hourly wage." width="400" height="400" loading="lazy" decoding="async"></picture>
                     </div>
                     <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
-                        <img src="Pillar3.png" alt="Pillar 3" width="400" height="400" loading="lazy" decoding="async">
+                        <picture><source media="(max-width: 767px)" srcset="pillar3-mobile.webp" width="1080" height="1350"><img src="Pillar3.png" alt="Pillar 03: The Creator. Capture and distribute premium content; build independent media assets; own and scale the media output." width="400" height="400" loading="lazy" decoding="async"></picture>
                     </div>
                     <div class="pillar-carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
-                        <img src="Pillar4.png" alt="Pillar 4" width="400" height="400" loading="lazy" decoding="async">
+                        <picture><source media="(max-width: 767px)" srcset="pillar4-mobile.webp" width="1080" height="1350"><img src="Pillar4.png" alt="Pillar 04: The Fan and Investor. Support the ecosystem, participate in growth, access economic upside, through the ecosystem flywheel of athlete, coach, creator and fan." width="400" height="400" loading="lazy" decoding="async"></picture>
                     </div>
                 </div>
             </div>
