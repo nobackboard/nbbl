@@ -199,6 +199,44 @@
         }
         .nav-mobile-panel .nav-mobile-gym:hover { background: rgba(255, 229, 0, 0.12); color: #FFE500; }
         body.nav-menu-open { overflow: hidden; }
+
+        /* ---- Academy promo (banner + section) ---- */
+        .academy-bar { position: absolute; top: 100%; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 40px; padding: .45rem 1rem; background: #FFE500; color: #0A0A0A; font-weight: 800; font-size: .8125rem; letter-spacing: .04em; text-transform: uppercase; text-align: center; line-height: 1.2; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+        .academy-bar { z-index: 1; }
+        .nav-mobile-panel { z-index: 2; }
+        .academy-bar:hover { background: #fff27a; }
+        .academy-bar:focus-visible { outline: 2px solid #E70910; outline-offset: -4px; }
+        .academy-bar .ab-new { background: #E70910; color: #fff; padding: .2rem .45rem; border-radius: .25rem; font-size: .6875rem; letter-spacing: .08em; }
+        .academy-bar .ab-go { white-space: nowrap; text-decoration: underline; text-underline-offset: 3px; }
+        .academy-bar .ab-long { display: none; }
+        @media (max-width: 767px) { .academy-bar { font-size: .72rem; gap: .45rem; padding: .45rem .75rem; } }
+        @media (min-width: 768px) { .academy-bar .ab-long { display: inline; } .academy-bar .ab-short { display: none; } }
+        body #top { padding-top: calc(7rem + 40px); }
+        @media (min-width: 768px) { body #top { padding-top: calc(8rem + 40px); } }
+        .scroll-mt-24 { scroll-margin-top: calc(6rem + 40px) !important; }
+        .academy-promo { max-width: 72rem; margin: 0 auto; padding: 5rem 1.5rem; display: grid; gap: 2.5rem; align-items: center; scroll-margin-top: calc(6rem + 40px); }
+        @media (min-width: 900px) { .academy-promo { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 4rem; } }
+        .academy-promo .ap-img { display: block; width: 100%; max-width: 360px; margin: 0 auto; border-radius: 1rem; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.12); transition: transform .2s ease; }
+        .academy-promo .ap-img:hover { transform: translateY(-3px); }
+        .academy-promo .ap-img:focus-visible { outline: 2px solid #E70910; outline-offset: 4px; }
+        .academy-promo .ap-img img { display: block; width: 100%; height: auto; }
+        .academy-promo .ap-copy { min-width: 0; }
+        .academy-promo .ap-kicker { display: inline-block; background: #E70910; color: #fff; font-weight: 800; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; padding: .35rem .6rem; border-radius: .25rem; }
+        .academy-promo h2 { font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 1; margin: 1rem 0 1.25rem; }
+        .academy-promo h2 span { color: #FFE500; }
+        .academy-promo p { color: #d1d5db; font-size: 1.125rem; line-height: 1.65; max-width: 40rem; }
+        .academy-promo ul { margin: 1.5rem 0 2rem; display: grid; gap: .75rem; }
+        .academy-promo li { display: grid; grid-template-columns: 1.25rem 1fr; gap: .5rem; color: #e5e7eb; line-height: 1.5; }
+        .academy-promo li::before { content: ""; width: .6rem; height: .6rem; margin-top: .5rem; background: #E70910; transform: rotate(45deg); }
+        .academy-promo li b { color: #fff; }
+        .academy-promo .ap-ctas { display: flex; flex-wrap: wrap; gap: .75rem; }
+        .academy-promo .ap-btn { display: inline-flex; align-items: center; padding: .9rem 1.4rem; border-radius: 9999px; font-weight: 800; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease, color .2s ease; }
+        .academy-promo .ap-btn.red { background: #E70910; color: #fff; }
+        .academy-promo .ap-btn.red:hover { background: #ff2a33; }
+        .academy-promo .ap-btn.gold { border: 2px solid #FFE500; color: #FFE500; }
+        .academy-promo .ap-btn.gold:hover { background: rgba(255,229,0,.12); }
+        .academy-promo .ap-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+        .academy-promo .ap-where { margin-top: 1.25rem; font-size: .9375rem; color: #9ca3af; }
     </style>
 </head>
 <body>
@@ -216,6 +254,7 @@
                     <a href="#the-ecosystem" class="hover:text-[#E70910] transition whitespace-nowrap">The Ecosystem</a>
                     <a href="#the-tech" class="hover:text-[#E70910] transition whitespace-nowrap">The Tech</a>
                     <a href="#the-gym" class="hover:text-[#E70910] transition whitespace-nowrap">The Gym</a>
+                    <a href="#academy" class="hover:text-[#E70910] transition whitespace-nowrap">Academy</a>
                     <a href="#watch" class="hover:text-[#E70910] transition whitespace-nowrap">Watch</a>
                     <a href="#stay-in-touch" class="hover:text-[#E70910] transition whitespace-nowrap">Get Updates</a>
                 </div>
@@ -231,10 +270,17 @@
             <a href="#the-ecosystem">The Ecosystem</a>
             <a href="#the-tech">The Tech</a>
             <a href="#the-gym">The Gym</a>
+            <a href="#academy">Academy</a>
             <a href="#watch">Watch</a>
             <a href="#stay-in-touch">Get Updates</a>
             <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="nav-mobile-gym">Explore the Gilbert Gym</a>
         </div>
+        <a href="https://academy.nobackboard.com/" class="academy-bar" target="_blank" rel="noopener">
+            <span class="ab-new">New</span>
+            <span class="ab-long">Shooting &amp; Scoring Academy · Grades 6–9 · Open House Nov 19–21 · $30 intro class</span>
+            <span class="ab-short">Academy Open House · Nov 19–21</span>
+            <span class="ab-go">Register →</span>
+        </a>
     </nav>
 
     <!-- Hero Section -->
@@ -270,6 +316,28 @@
             </p>
         </div>
     </header>
+
+    <!-- Academy promo -->
+    <section id="academy" class="academy-promo" aria-labelledby="academy-heading">
+        <a href="https://academy.nobackboard.com/" class="ap-img" target="_blank" rel="noopener" aria-label="Register for the No Backboard Shooting &amp; Scoring Academy">
+            <img src="academy-promo.webp" alt="No Backboard Basketball Gym Shooting &amp; Scoring Academy Open House, November 19–21. Co-ed, grades 6–9, 90-minute group classes, $30 introductory class. Register now at nobackboard.com/academy." width="720" height="1280" loading="lazy" decoding="async">
+        </a>
+        <div class="ap-copy">
+            <span class="ap-kicker">Now enrolling · Gilbert, AZ</span>
+            <h2 id="academy-heading">No Backboard <span>Shooting &amp; Scoring</span> Academy</h2>
+            <p>Train different. Play your game better. Coach Mark Tee Armstrong’s 90-minute classes build precision shooting, faster decisions and finishing on the 16-inch UHoop, then put it to work in a live scrimmage.</p>
+            <ul>
+                <li><span><b>Open House, Nov 19–21:</b> a $30 introductory class, with the $30 credited if you join within 7 days.</span></li>
+                <li><span><b>Classes start Tuesday, Dec 1:</b> Tuesday–Saturday, co-ed, grades 6–9, grouped by grade.</span></li>
+                <li><span><b>Founding Family rates</b> for the first 50 families.</span></li>
+            </ul>
+            <div class="ap-ctas">
+                <a href="https://academy.nobackboard.com/" class="ap-btn red" target="_blank" rel="noopener">Reserve a $30 class →</a>
+                <a href="https://academy.nobackboard.com/#plans" class="ap-btn gold" target="_blank" rel="noopener">See plans →</a>
+            </div>
+            <p class="ap-where">Eduprize High School Gym · 1383 E Baseline Rd, Gilbert, AZ 85233</p>
+        </div>
+    </section>
 
     <!-- The Game -->
     <section id="the-game" class="py-20 px-6 max-w-7xl mx-auto scroll-mt-24">
