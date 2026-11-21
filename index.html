@@ -266,6 +266,15 @@
         .portal-more { margin-top: 3rem; text-align: center; }
         .portal-more a { color: #FFE500; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
         .portal-more a:hover { color: #fff; }
+        /* ---- YouTube Shorts row: swipe on phones/tablets, 5 across on desktop ---- */
+        .yt-shorts { display: grid; grid-auto-flow: column; grid-auto-columns: 68%; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
+        @media (min-width: 640px) { .yt-shorts { grid-auto-columns: 38%; } }
+        @media (min-width: 1024px) { .yt-shorts { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; } }
+        .yt-short { scroll-snap-align: start; aspect-ratio: 9 / 16; border-radius: 1rem; overflow: hidden; }
+        .yt-short iframe { display: block; width: 100%; height: 100%; border: 0; }
+        .yt-shorts-more { margin-top: 1.25rem; }
+        .yt-shorts-more a { color: #9ca3af; font-size: .875rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+        .yt-shorts-more a:hover { color: #fff; }
     </style>
 </head>
 <body>
@@ -521,7 +530,7 @@
             </div>
     </section>
 
-    <!-- Content Feed: TikTok & Instagram -->
+    <!-- Content Feed: YouTube Shorts -->
     <section id="watch" class="py-20 bg-[#0A0A0A] scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="portal-card" aria-labelledby="portal-heading">
@@ -536,49 +545,27 @@
             </div>
 
             <h2 class="text-5xl mb-4">Trending on the Court</h2>
-            <p class="text-gray-400 mb-12 max-w-2xl">Latest from <a href="https://www.tiktok.com/@nobackboards" class="text-[#E70910] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on TikTok and Instagram.</p>
+            <p class="text-gray-400 mb-12 max-w-2xl">The latest Shorts from <a href="https://www.youtube.com/@nobackboards/shorts" class="text-[#E70910] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on YouTube.</p>
 
-            <h3 class="text-3xl mb-2">TikTok</h3>
-            <p class="text-gray-400 mb-8">@nobackboards</p>
-            <div class="tiktok-grid mb-20">
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/6813157839008419078?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+            <!-- Latest 5 YouTube Shorts (@nobackboards, as of Nov 21, 2026). Update the IDs to refresh. -->
+            <div class="yt-shorts" role="list" aria-label="Latest YouTube Shorts from @nobackboards">
+                <div class="yt-short glass" role="listitem">
+                    <iframe src="https://www.youtube-nocookie.com/embed/2HYJVKB841I?rel=0&amp;playsinline=1" title="Can I Make 10 Shots in a Row? The Challenge Begins" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7010411538599120133?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                <div class="yt-short glass" role="listitem">
+                    <iframe src="https://www.youtube-nocookie.com/embed/FpfLbZphUho?rel=0&amp;playsinline=1" title="Can a Different Game Create Better Basketball Players?" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/6813916203912891654?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                <div class="yt-short glass" role="listitem">
+                    <iframe src="https://www.youtube-nocookie.com/embed/iPKFjnon0hM?rel=0&amp;playsinline=1" title="Become a Better 3-Point Shooter at Any Level" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7031899728308849966?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                <div class="yt-short glass" role="listitem">
+                    <iframe src="https://www.youtube-nocookie.com/embed/KmivAed9jMQ?rel=0&amp;playsinline=1" title="Paul Westhead’s Powerful Basketball Lesson: Find Direction Through Indirection" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7437223323332857131?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
-                </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7019908709597973765?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
-                </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7004228721045409029?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
-                </div>
-                <div class="glass rounded-xl tiktok-card">
-                    <iframe class="tiktok-player-iframe" src="https://www.tiktok.com/player/v1/7199295940115696939?autoplay=0&amp;music_info=0&amp;description=0&amp;rel=0" title="TikTok @nobackboards" allow="fullscreen" loading="lazy"></iframe>
+                <div class="yt-short glass" role="listitem">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Fu84alL4r7E?rel=0&amp;playsinline=1" title="In-Game Adjustments: Make Smarter Decisions on the Court" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
-
-            <h3 class="text-3xl mb-8">Instagram Reels</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass rounded-xl p-4 ig-embed-wrap">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKb3vlWvZ_z/" data-instgrm-version="14"></blockquote>
-                </div>
-                <div class="glass rounded-xl p-4 ig-embed-wrap">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKalAKBtz_D/" data-instgrm-version="14"></blockquote>
-                </div>
-                <div class="glass rounded-xl p-4 ig-embed-wrap">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKYNI_LvUIc/" data-instgrm-version="14"></blockquote>
-                </div>
-            </div>
+            <p class="yt-shorts-more"><a href="https://www.youtube.com/@nobackboards/shorts" target="_blank" rel="noopener noreferrer">More Shorts on YouTube →</a></p>
             <p class="portal-more"><a href="https://members.nobackboard.com/" data-portal-placement="watch_more">Want more? Watch on the Members Portal →</a></p>
         </div>
     </section>
@@ -802,7 +789,6 @@
         initCarousel('gym-carousel', 'gym-carousel-track', 'gym-carousel-prev', 'gym-carousel-next', 'gym-carousel-dots');
     })();
     </script>
-    <script async src="https://www.instagram.com/embed.js"></script>
     <script>
     (function () {
         var form = document.getElementById('stay-contact-form');
