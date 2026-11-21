@@ -239,6 +239,33 @@
         .academy-promo .ap-btn.gold:hover { background: rgba(255,229,0,.12); }
         .academy-promo .ap-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
         .academy-promo .ap-where { margin-top: 1.25rem; font-size: .9375rem; color: #9ca3af; }
+        /* ---- Members Portal funnel ---- */
+        /* Desktop nav link only where the bar has room; below 1440px it lives in the hamburger panel */
+        .nav-members { display: none; }
+        @media (min-width: 1440px) { .nav-members { display: inline; } }
+        .portal-hero { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: .6rem; text-align: center; }
+        .portal-link { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.4rem; border: 2px solid #FFE500; color: #FFE500; border-radius: 9999px; font-weight: 800; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease; }
+        .portal-link:hover { background: rgba(255,229,0,.12); }
+        .portal-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+        .portal-sub { font-size: .8125rem; color: #9ca3af; letter-spacing: .02em; }
+        .portal-card { margin-bottom: 4rem; padding: 2rem 1.5rem; border-radius: 1.25rem; border: 1px solid rgba(255,229,0,.35); background: linear-gradient(135deg, rgba(231,9,16,.14), rgba(255,229,0,.05)); }
+        @media (min-width: 768px) { .portal-card { padding: 2.75rem 3rem; } }
+        .portal-card .ap-kicker { display: inline-block; background: #E70910; color: #fff; font-weight: 800; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; padding: .35rem .6rem; border-radius: .25rem; }
+        .portal-card h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1; margin: 1rem 0 1rem; }
+        .portal-card h2 span { color: #FFE500; }
+        .portal-card .portal-body { color: #d1d5db; font-size: 1.125rem; line-height: 1.65; max-width: 44rem; }
+        .portal-ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+        .portal-btn { display: inline-flex; align-items: center; padding: .9rem 1.4rem; border-radius: 9999px; font-weight: 800; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; transition: background .2s ease, color .2s ease; }
+        .portal-btn.red { background: #E70910; color: #fff; }
+        .portal-btn.red:hover { background: #ff2a33; }
+        .portal-btn.gold { border: 2px solid #FFE500; color: #FFE500; }
+        .portal-btn.gold:hover { background: rgba(255,229,0,.12); }
+        .portal-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+        @media (max-width: 479px) { .portal-btn { font-size: .78rem; letter-spacing: .05em; padding: .85rem 1.1rem; } }
+        .portal-note { margin-top: 1.25rem; font-size: .8125rem; line-height: 1.55; color: #9ca3af; max-width: 44rem; }
+        .portal-more { margin-top: 3rem; text-align: center; }
+        .portal-more a { color: #FFE500; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
+        .portal-more a:hover { color: #fff; }
     </style>
 </head>
 <body>
@@ -258,6 +285,7 @@
                     <a href="#the-gym" class="hover:text-[#E70910] transition whitespace-nowrap">The Gym</a>
                     <a href="#academy" class="hover:text-[#E70910] transition whitespace-nowrap">Academy</a>
                     <a href="#watch" class="hover:text-[#E70910] transition whitespace-nowrap">Watch</a>
+                    <a href="https://members.nobackboard.com/" data-portal-placement="nav" class="nav-members hover:text-[#E70910] transition whitespace-nowrap">Members</a>
                     <a href="#stay-in-touch" class="hover:text-[#E70910] transition whitespace-nowrap">Get Updates</a>
                 </div>
                 <button type="button" id="nav-menu-btn" class="nav-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-panel">
@@ -274,14 +302,15 @@
             <a href="#the-gym">The Gym</a>
             <a href="#academy">Academy</a>
             <a href="#watch">Watch</a>
+            <a href="https://members.nobackboard.com/" data-portal-placement="nav_mobile">Members Portal</a>
             <a href="#stay-in-touch">Get Updates</a>
             <a href="https://nobackboardbasketballgym.com/" target="_blank" rel="noopener noreferrer" class="nav-mobile-gym">Explore the Gilbert Gym</a>
         </div>
-        <a href="https://academy.nobackboard.com/" class="academy-bar" target="_blank" rel="noopener">
+        <a href="https://members.nobackboard.com/" class="academy-bar" data-portal-placement="promo_bar">
             <span class="ab-new">New</span>
-            <span class="ab-long">Shooting &amp; Scoring Academy · Grades 6–9 · Open House Nov 19–21 · $30 intro class</span>
-            <span class="ab-short">Academy Open House · Nov 19–21</span>
-            <span class="ab-go">Register →</span>
+            <span class="ab-long">Members Portal beta · Watch NBBL highlights free with a fan account</span>
+            <span class="ab-short">Watch highlights free</span>
+            <span class="ab-go">Watch →</span>
         </a>
     </nav>
 
@@ -316,6 +345,10 @@
             <p class="hero-intro mt-10 md:mt-14 max-w-4xl mx-auto text-center text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed">
                 <span class="inline font-bold tracking-tighter text-white">NB<span class="text-[#E70910]">BL</span></span> is a next-generation basketball skills development and media platform that delivers an immersive fan experience by combining competitive play, digital content, and athlete-driven monetization into a unified sports ecosystem.
             </p>
+            <div class="portal-hero">
+                <a href="https://members.nobackboard.com/" class="portal-link" data-portal-placement="hero"><span aria-hidden="true">▶</span> Watch highlights</a>
+                <p class="portal-sub">Free with a fan account · Members Portal beta</p>
+            </div>
         </div>
     </header>
 
@@ -491,6 +524,17 @@
     <!-- Content Feed: TikTok & Instagram -->
     <section id="watch" class="py-20 bg-[#0A0A0A] scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
+            <div class="portal-card" aria-labelledby="portal-heading">
+                <span class="ap-kicker">Members Portal · Beta</span>
+                <h2 id="portal-heading">Watch highlights and <span>full-length replays</span></h2>
+                <p class="portal-body">Create a free fan account to watch weekly highlights and learn how No Backboard Basketball is played. Founding Members can also watch full-length replays of every Gilbert PlayCenter livestream.</p>
+                <div class="portal-ctas">
+                    <a href="https://members.nobackboard.com/" class="portal-btn red" data-portal-placement="watch_section">Watch highlights →</a>
+                    <a href="https://members.nobackboard.com/" class="portal-btn gold" data-portal-placement="watch_section_signin">Founding Members: sign in</a>
+                </div>
+                <p class="portal-note">Sign in with your email. The Members Portal is in beta, so things may change or not work as expected. Founding Membership is a presale of future NBBL platform access. Target launch is February 1, 2027 and is not guaranteed. It is not an investment or a donation. Full refund available within 14 days of purchase.</p>
+            </div>
+
             <h2 class="text-5xl mb-4">Trending on the Court</h2>
             <p class="text-gray-400 mb-12 max-w-2xl">Latest from <a href="https://www.tiktok.com/@nobackboards" class="text-[#E70910] hover:underline" target="_blank" rel="noopener noreferrer">@nobackboards</a> on TikTok and Instagram.</p>
 
@@ -535,6 +579,7 @@
                     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKYNI_LvUIc/" data-instgrm-version="14"></blockquote>
                 </div>
             </div>
+            <p class="portal-more"><a href="https://members.nobackboard.com/" data-portal-placement="watch_more">Want more? Watch on the Members Portal →</a></p>
         </div>
     </section>
 
@@ -542,7 +587,7 @@
     <section id="stay-in-touch" class="py-20 md:py-24 px-6 max-w-7xl mx-auto scroll-mt-24 border-t border-white/10" aria-labelledby="get-updates-heading">
         <div class="max-w-xl mx-auto">
             <h2 id="get-updates-heading" class="text-5xl md:text-6xl mb-4 text-center">Get NBBL Updates</h2>
-            <p class="text-gray-400 text-center mb-10 leading-relaxed">Join our contact list for NBBL news and updates. Add a message if you’d like—we read every note. Better yet, become a Founding Member of our NBBL platform at <a href="https://nobackboard.com/founding" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E70910] underline underline-offset-2 hover:text-white transition">https://nobackboard.com/founding</a>.</p>
+            <p class="text-gray-400 text-center mb-10 leading-relaxed">Join our contact list for NBBL news and updates. Add a message if you’d like—we read every note. Better yet, become a Founding Member of our NBBL platform at <a href="https://nobackboard.com/founding" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E70910] underline underline-offset-2 hover:text-white transition">https://nobackboard.com/founding</a>. Want to watch now? <a href="https://members.nobackboard.com/" data-portal-placement="stay_in_touch" class="font-bold text-[#E70910] underline underline-offset-2 hover:text-white transition">Create a free fan account</a> on the Members Portal (beta).</p>
             <p id="stay-contact-status" class="stay-contact-status mb-4" role="status" aria-live="polite"></p>
             <form id="stay-contact-form" class="glass rounded-2xl p-6 md:p-8 border border-white/10 space-y-6" action="#" method="post" novalidate>
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
@@ -581,6 +626,7 @@
                     <li><a href="#the-tech" class="hover:text-[#E70910] transition">The Tech</a></li>
                     <li><a href="#the-gym" class="hover:text-[#E70910] transition">The Gym</a></li>
                     <li><a href="#watch" class="hover:text-[#E70910] transition">Watch</a></li>
+                    <li><a href="https://members.nobackboard.com/" data-portal-placement="footer" class="hover:text-[#E70910] transition">Members Portal</a></li>
                 </ul>
             </div>
             <div>
