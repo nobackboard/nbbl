@@ -634,45 +634,50 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-white/10 py-16 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <a href="#top" class="inline-flex items-center gap-2 md:gap-3 mb-5">
-                    <img src="logo.png" alt="" width="160" height="48" class="site-logo site-logo--footer max-w-[10rem] md:max-w-[11rem]" aria-hidden="true">
-                    <span class="text-2xl md:text-3xl font-bold tracking-tighter">NB<span class="text-[#E70910]">BL</span></span>
-                </a>
-                <p class="text-gray-500 max-w-sm">Changing the culture of basketball by removing the safety net. Join us in the lab and hone your craft.</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Menu</h4>
-                <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
-                    <li><a href="#the-game" class="hover:text-[#E70910] transition">The Game</a></li>
-                    <li><a href="#the-ecosystem" class="hover:text-[#E70910] transition">The Ecosystem</a></li>
-                    <li><a href="#the-tech" class="hover:text-[#E70910] transition">The Tech</a></li>
-                    <li><a href="#the-gym" class="hover:text-[#E70910] transition">The Gym</a></li>
-                    <li><a href="#watch" class="hover:text-[#E70910] transition">Watch</a></li>
-                    <li><a href="https://members.nobackboard.com/" data-portal-placement="footer" class="hover:text-[#E70910] transition">Members Portal</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Join</h4>
-                <div class="mb-8 space-y-4">
-                    <a href="https://nobackboard.com/founding" class="inline-flex items-center justify-center max-w-full bg-[#E70910] px-3 py-2 md:px-4 md:py-2.5 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-wide text-center leading-tight hover:opacity-90 transition" aria-label="Become a Founding Member">Become a Founding Member</a>
-                    <ul class="space-y-3 text-sm font-bold uppercase tracking-widest text-gray-500">
-                        <li><a href="#stay-in-touch" class="hover:text-[#E70910] transition">Get Updates</a></li>
-                    </ul>
-                </div>
-                <h4 class="font-bold mb-4 uppercase tracking-widest text-sm">Connect</h4>
-                <div class="flex space-x-4">
-                    <a href="https://www.instagram.com/nobackboards/" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#E70910] transition" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-                    <a href="https://www.tiktok.com/@nobackboards" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-[#E70910] transition" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TK</a>
-                </div>
-            </div>
+    <style>
+.nbbl-foot{border-top:1px solid rgba(255,255,255,.14);padding:4rem 0 3rem;background:#05060a;color:#f4f5f7;font:16px/1.6 'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:left}
+.nbbl-foot *{box-sizing:border-box}
+.nbbl-foot .nf-shell{width:min(1240px,calc(100% - 56px));margin:auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem}
+.nbbl-foot .nf-brand{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;color:#f4f5f7;font:800 1.55rem/1 'Barlow Condensed','Oswald','Arial Narrow',Impact,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.nbbl-foot .nf-brand img{width:46px;height:46px;object-fit:contain;display:block}
+.nbbl-foot .nf-org{margin:1rem 0 0;font-size:.9rem;color:#b7bcc6}
+.nbbl-foot .nf-links{display:flex;flex-wrap:wrap;gap:.2rem 1.2rem;margin-top:1rem}
+.nbbl-foot .nf-links a{font-size:.85rem;color:#b7bcc6;padding:.5rem 0;display:inline-block;text-decoration:underline;text-underline-offset:2px}
+.nbbl-foot .nf-links a:hover{color:#fff}
+.nbbl-foot .nf-disc h4{font:800 1.4rem/.92 'Barlow Condensed','Oswald','Arial Narrow',Impact,sans-serif;text-transform:uppercase;letter-spacing:.005em;margin:0 0 .8rem;color:#f4f5f7}
+.nbbl-foot .nf-disc p{font-size:.8rem;line-height:1.6;color:#b7bcc6;margin:0 0 .75rem}
+.nbbl-foot a:focus-visible{outline:3px solid #f6ee16;outline-offset:3px}
+@media (max-width:860px){.nbbl-foot .nf-shell{grid-template-columns:1fr;gap:2rem;width:calc(100% - 32px)}}
+</style>
+    <footer class="nbbl-foot">
+      <div class="nf-shell">
+        <div>
+          <a class="nf-brand" href="https://nobackboard.com"><img src="logo.png" alt="" width="46" height="46">NBBL</a>
+          <p class="nf-org">No Backboard Basketball League LLC<br>Gilbert, Arizona</p>
+          <div class="nf-links">
+            <a href="https://nobackboard.com" rel="noopener noreferrer">NoBackboard.com</a>
+            <a href="https://members.nobackboard.com/" data-portal-placement="footer">Members Portal</a>
+            <a href="https://nobackboard.com/founding/terms" rel="noopener noreferrer">Membership Terms</a>
+            <a href="https://nobackboard.com/founding/lifetime-terms" rel="noopener noreferrer">Lifetime Terms</a>
+            <a href="https://nobackboard.com/founding/refund-policy" rel="noopener noreferrer">Refund Policy</a>
+            <a href="https://nobackboard.com/founding/privacy" rel="noopener noreferrer">Privacy Notice</a>
+            <a href="https://nobackboardbasketballgym.com/assets/NBBL%20Privacy%20Policy.pdf" rel="noopener noreferrer">General gym Privacy Policy</a>
+            <a href="https://nobackboard.com/founding/referral-credit-terms" rel="noopener noreferrer">Referral Credit Terms</a>
+            <a href="mailto:members@nobackboard.com">Contact</a>
+            <a href="https://www.instagram.com/nobackboards/" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@nobackboards" rel="noopener noreferrer">TikTok</a>
+          </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-xs text-gray-600 flex flex-col sm:flex-row sm:justify-between gap-2">
-            <p>© 2026 NO BACKBOARD BASKETBALL LEAGUE. ALL RIGHTS RESERVED.</p>
-            <p>DESIGNED FOR THE 1%</p>
+        <div class="nf-disc">
+          <h4>Important information</h4>
+          <p>Not an investment. A Founding Membership is a one-time purchase of a fan membership for the stated term. It is not a security, investment, loan or ownership interest in No Backboard Basketball League LLC, Peach Basket Development Enterprise Inc. or any affiliate, and it carries no right to profits, revenue or voting.</p>
+          <p>Presale. This presale is for future platform access. Benefits labeled "coming at launch" or "planned" are not yet available and may change. Target platform launch: February 1, 2027. This date is not guaranteed and may change. Term: November 1, 2026 – December 31, 2027.</p>
+          <p>Refunds. A full refund within 14 days of purchase, then no refunds except where required by law.</p>
+          <p>Nontransferable, except a one-time transfer to the account's registered authorized user at 18 and, for Lifetime, by will or trust.</p>
+          <p>Not NBA-affiliated. NBBL is an independent league and is not affiliated with, sponsored or endorsed by the National Basketball Association. References to NBA All-Star Weekend describe timing only.</p>
+          <p>Prices exclude applicable sales tax. Not a charitable donation.</p>
         </div>
+      </div>
     </footer>
 
     <script>
