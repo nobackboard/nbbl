@@ -33,6 +33,10 @@
 
   var GOFUNDME_PATH = '/f/no-backboard-basketball-gym';
   var GYM_HOST = 'nobackboardbasketballgym.com';
+  // Members Portal shares this GA4 property, so links to it carry no UTMs
+  // (UTMs would restart the session and overwrite the visitor's original source).
+  // Each link sets data-portal-placement instead.
+  var PORTAL_HOST = 'members.nobackboard.com';
 
   function socialPlatform(hostname) {
     var host = (hostname || '').toLowerCase();
@@ -66,6 +70,14 @@
 
       var host = url.hostname.toLowerCase();
       var path = url.pathname.toLowerCase();
+
+      if (host === PORTAL_HOST) {
+        window.trackEvent('members_portal_click', {
+          placement: anchor.getAttribute('data-portal-placement') || 'unknown',
+          link_url: url.href,
+        });
+        return;
+      }
 
       if (
         host.indexOf('gofundme.com') !== -1 &&

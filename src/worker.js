@@ -192,10 +192,72 @@ async function handleContact(request, env) {
   }
 }
 
+// ---- /api/youtube-shorts: latest Shorts from @nobackboards for the homepage Watch section ----
+// YouTube's public "Shorts" uploads playlist = "UUSH" + channel ID without its "UC" prefix.
+// Its RSS feed needs no API key and lists the newest Shorts first (up to 15).
+const YT_CHANNEL_ID = 'UCAS7rRLRsaPVGK3bJkmhRLw'; // youtube.com/@nobackboards
+const YT_SHORTS_FEED = `https://www.youtube.com/feeds/videos.xml?playlist_id=UUSH${YT_CHANNEL_ID.slice(2)}`;
+const SHORTS_LIMIT = 5;
+const SHORTS_CACHE_SECONDS = 900; // re-check YouTube at most every 15 minutes per edge location
+
+function decodeXml(s) {
+  return String(s)
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+}
+
+export function parseShortsFeed(xml, limit = SHORTS_LIMIT) {
+  const out = [];
+  const entries = String(xml).split('<entry>').slice(1);
+  for (const entry of entries) {
+    const id = (entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
+    if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) continue;
+    const title = decodeXml((entry.match(/<title>([^<]*)<\/title>/) || [])[1] || '').trim();
+    const published = (entry.match(/<published>([^<]+)<\/published>/) || [])[1] || null;
+    out.push({ id, title, published });
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
+async function handleYouTubeShorts(request, ctx) {
+  if (request.method !== 'GET' && request.method !== 'HEAD') return json({ error: 'Method not allowed' }, 405);
+  const cache = caches.default;
+  const cacheKey = new Request(new URL('/api/youtube-shorts', request.url).toString(), { method: 'GET' });
+  const hit = await cache.match(cacheKey);
+  if (hit) return hit;
+
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Strict-Transport-Security': 'max-age=63072000',
+  };
+  try {
+    const res = await fetch(YT_SHORTS_FEED, { headers: { 'User-Agent': 'nobackboard.com shorts feed' } });
+    if (!res.ok) throw new Error(`YouTube feed ${res.status}`);
+    const shorts = parseShortsFeed(await res.text());
+    if (!shorts.length) throw new Error('YouTube feed had no Shorts');
+    const response = new Response(JSON.stringify({ updated: new Date().toISOString(), shorts }), {
+      headers: { ...headers, 'Cache-Control': `public, max-age=300, s-maxage=${SHORTS_CACHE_SECONDS}` },
+    });
+    ctx.waitUntil(cache.put(cacheKey, response.clone()));
+    return response;
+  } catch (err) {
+    console.error('[youtube-shorts]', err && err.message ? err.message : err);
+    // The page keeps its built-in Shorts when this fails.
+    return new Response(JSON.stringify({ error: 'unavailable', shorts: [] }), {
+      status: 502,
+      headers: { ...headers, 'Cache-Control': 'no-store' },
+    });
+  }
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/api/contact') return handleContact(request, env);
+    if (url.pathname === '/api/youtube-shorts') return handleYouTubeShorts(request, ctx);
     // html_handling is "none" (exact Vercel parity for /index.html and the verification file),
     // so serve "/" from /index.html here.
     if (url.pathname === '/') {
