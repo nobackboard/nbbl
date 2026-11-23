@@ -277,6 +277,8 @@
         @media (min-width: 768px) { .mh { align-items: center; } }
         .mh-bg { position: absolute; inset: 0; z-index: -2; }
         .mh-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
+        /* Phones: frame the rim in the middle of the screen */
+        @media (max-width: 767px) { .mh-bg img { object-position: 6% 30%; } }
         .mh-shade { position: absolute; inset: 0; z-index: -1; }
         .mh-shade.v { background: linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.25) 45%, rgba(5,5,5,0.6) 100%); }
         .mh-shade.h { background: linear-gradient(90deg, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.35) 45%, transparent 70%); }
