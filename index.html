@@ -437,7 +437,12 @@
         var frame = fig.querySelector('.mh-frame');
         function track(name) { try { if (window.trackEvent) window.trackEvent(name, { event_category: 'home_clip', site: 'nobackboard.com' }); } catch (e) {} }
         function hide() { fig.hidden = true; hero.classList.remove('has-clip'); }
-        video.addEventListener('loadedmetadata', function () { fig.hidden = false; hero.classList.add('has-clip'); }, { once: true });
+        function show() { fig.hidden = false; hero.classList.add('has-clip'); }
+        // Show the player as soon as the clip's poster loads (iPhones often skip preloading video, so don't wait on that).
+        var probe = new Image();
+        probe.onload = show;
+        probe.src = base + '/poster?v=' + v;
+        video.addEventListener('loadedmetadata', show, { once: true });
         video.addEventListener('error', hide);
         video.addEventListener('contextmenu', function (e) { e.preventDefault(); });
         function play() {
