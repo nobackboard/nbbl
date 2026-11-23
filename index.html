@@ -272,6 +272,65 @@
         @media (min-width: 1024px) { .yt-shorts { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; } }
         .yt-short { scroll-snap-align: start; aspect-ratio: 9 / 16; border-radius: 1rem; overflow: hidden; }
         .yt-short iframe { display: block; width: 100%; height: 100%; border: 0; }
+        /* ---- Members Portal hero (ported from members.nobackboard.com) ---- */
+        .mh { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 92svh; overflow: hidden; }
+        @media (min-width: 768px) { .mh { align-items: center; } }
+        .mh-bg { position: absolute; inset: 0; z-index: -2; }
+        .mh-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
+        .mh-shade { position: absolute; inset: 0; z-index: -1; }
+        .mh-shade.v { background: linear-gradient(0deg, #050505 0%, rgba(5,5,5,0.25) 45%, rgba(5,5,5,0.6) 100%); }
+        .mh-shade.h { background: linear-gradient(90deg, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.35) 45%, transparent 70%); }
+        .mh-inner { width: 100%; max-width: 72rem; margin: 0 auto; padding: 9rem 1rem 4rem; display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .mh-inner { padding-top: 8rem; } }
+        .mh-copy { display: contents; }
+        .mh-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #E70910; }
+        .mh-title { container-type: inline-size; margin-top: 1rem; max-width: 48rem; line-height: .95; white-space: nowrap; color: #FFE500; font-weight: 700; filter: drop-shadow(0 2px 18px rgba(0,0,0,.85)); }
+        .mh-title .l1 { display: block; font-size: 8.4cqw; line-height: 1; }
+        .mh-title .l2 { display: block; font-size: 15.7cqw; }
+        @media (min-width: 640px) { .mh-title .l2 { font-size: 4.5rem; } }
+        @media (min-width: 1024px) { .mh-title .l1 { text-align: center; } .mh-title .l2 { font-size: 6rem; } .mh.has-clip .mh-title .l2 { font-size: 4.5rem; } }
+        .mh-sub { order: 2; margin-top: 1.5rem; max-width: 36rem; font-size: 1.125rem; line-height: 1.6; color: #e5e7eb; text-shadow: 0 1px 12px rgba(0,0,0,.9); }
+        .mh-ctas { order: 2; margin-top: 2.5rem; display: flex; flex-direction: column; gap: .75rem; }
+        @media (min-width: 640px) { .mh-ctas { flex-direction: row; } }
+        .mh-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; padding: .8rem 1.6rem; font-weight: 700; font-size: .8125rem; line-height: 1.1; letter-spacing: .06em; text-transform: uppercase; text-align: center; transition: background-color .15s ease, border-color .15s ease, opacity .15s ease; }
+        .mh-btn:focus-visible { outline: 2px solid #E70910; outline-offset: 3px; }
+        .mh-btn.red { background: #E70910; color: #fff; }
+        .mh-btn.red:hover { background: #ff2a2f; }
+        .mh-btn.yellow { background: #FFE500; color: #050505; }
+        .mh-btn.yellow:hover { opacity: .9; }
+        .mh-btn.ghost { border: 1px solid rgba(255,255,255,.35); color: #fff; background: rgba(0,0,0,.3); backdrop-filter: blur(8px); }
+        .mh-btn.ghost:hover { border-color: #E70910; }
+        .mh-btn.sm { padding: .55rem 1.1rem; font-size: .75rem; white-space: nowrap; }
+        .mh-signin { order: 2; margin-top: 1.25rem; font-size: .875rem; color: #e5e7eb; }
+        .mh-signin a { font-weight: 700; color: #fff; text-decoration: underline; text-decoration-color: #E70910; text-underline-offset: 4px; }
+        .mh-clip { order: 1; margin-top: 2rem; }
+        .mh-clip[hidden] { display: none; }
+        @media (min-width: 1024px) {
+            .mh.has-clip .mh-inner { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); align-items: center; gap: 3rem; }
+            .mh-copy { display: block; }
+            .mh-sub, .mh-ctas, .mh-signin, .mh-clip { order: 0; }
+            .mh-clip { margin-top: 0; }
+        }
+        .mh-frame { position: relative; aspect-ratio: 16 / 9; width: 100%; overflow: hidden; border-radius: 1rem; border: 1px solid rgba(255,255,255,.15); background: #000; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+        .mh-frame.is-ended { aspect-ratio: 1 / 1; }
+        @media (min-width: 640px) { .mh-frame.is-ended { aspect-ratio: 16 / 9; } }
+        .mh-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .mh-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(0deg, rgba(0,0,0,.7), rgba(0,0,0,.1) 50%, rgba(0,0,0,.2)); cursor: pointer; border: 0; color: #fff; }
+        .mh-play-dot { display: flex; align-items: center; justify-content: center; width: 5rem; height: 5rem; border-radius: 9999px; background: #E70910; box-shadow: 0 0 0 8px rgba(231,9,16,.25); transition: transform .15s ease, background-color .15s ease; }
+        .mh-play:hover .mh-play-dot { transform: scale(1.05); background: #ff2a2f; }
+        .mh-play-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem; text-align: left; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #FFE500; }
+        .mh-end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; padding: 1.25rem; text-align: center; background: rgba(0,0,0,.85); backdrop-filter: blur(4px); }
+        @media (min-width: 640px) { .mh-end { padding: 2rem; } }
+        .mh-end[hidden], .mh-play[hidden] { display: none; }
+        .mh-end .k { font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #FFE500; }
+        .mh-end h3 { margin-top: .5rem; font-size: 1.875rem; line-height: 1; color: #fff; outline: none; }
+        @media (min-width: 640px) { .mh-end h3 { font-size: 2.25rem; } }
+        .mh-end p.b { margin-top: .75rem; max-width: 28rem; font-size: .875rem; color: #e5e7eb; }
+        @media (min-width: 640px) { .mh-end p.b { font-size: 1rem; } }
+        .mh-end .ctas { margin-top: 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+        @media (min-width: 640px) { .mh-end .ctas { flex-direction: row; gap: .75rem; } }
+        .mh-replay { margin-top: 1rem; font-size: .875rem; font-weight: 700; color: #9ca3af; text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 4px; background: none; border: 0; cursor: pointer; }
+        .mh-replay:hover { color: #fff; }
     </style>
 </head>
 <body>
@@ -320,8 +379,90 @@
         </a>
     </nav>
 
+    <!-- Members Portal hero (same as members.nobackboard.com) -->
+    <section id="top" class="mh" aria-labelledby="mh-title">
+        <picture class="mh-bg">
+            <source media="(max-width: 767px)" srcset="members-hero-sm.webp">
+            <img src="members-hero.webp" alt="A player dunks on the NBBL no-backboard rim at the Gilbert PlayCenter" fetchpriority="high">
+        </picture>
+        <div class="mh-shade v" aria-hidden="true"></div>
+        <div class="mh-shade h" aria-hidden="true"></div>
+        <div class="mh-inner">
+            <div class="mh-copy">
+                <p class="mh-eyebrow">Swish. Speed. Skill.</p>
+                <h2 id="mh-title" class="mh-title">
+                    <span class="l1">No Backboard Basketball</span>
+                    <span class="l2">Watch it here.</span>
+                </h2>
+                <p class="mh-sub">Highlights, full sessions from the Gilbert PlayCenter, and the story of the league as it happens.</p>
+                <div class="mh-ctas">
+                    <a href="https://members.nobackboard.com/signin" class="mh-btn red" data-portal-placement="home_hero_watch_free">Watch free</a>
+                    <a href="https://nobackboard.com/founding" class="mh-btn ghost">Become a founding member</a>
+                </div>
+                <p class="mh-signin">Already a founding member? <a href="https://members.nobackboard.com/signin" data-portal-placement="home_hero_signin">Sign in with the email you joined with.</a></p>
+            </div>
+            <figure id="mh-clip" class="mh-clip" hidden>
+                <div class="mh-frame">
+                    <video id="mh-video" playsinline preload="metadata" controlslist="nodownload" aria-label="NBBL highlight"></video>
+                    <button type="button" id="mh-play" class="mh-play" aria-label="Play highlight">
+                        <span class="mh-play-dot"><svg viewBox="0 0 24 24" aria-hidden="true" width="36" height="36" style="margin-left:4px;fill:#fff"><path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.2-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5Z"/></svg></span>
+                        <span class="mh-play-label">Watch the highlight</span>
+                    </button>
+                    <div id="mh-end" class="mh-end" role="region" aria-label="Become a member" hidden>
+                        <p class="k">That was just the highlight</p>
+                        <h3 id="mh-end-heading" tabindex="-1">Watch the whole game</h3>
+                        <p class="b">Founding members get the full game and every highlight from the Gilbert PlayCenter as soon as it drops. Fans (free accounts) get to watch this full game for a limited time.</p>
+                        <div class="ctas">
+                            <a href="https://nobackboard.com/founding" class="mh-btn yellow sm">Become a founding member</a>
+                            <a href="https://members.nobackboard.com/signin" class="mh-btn ghost sm" data-portal-placement="home_hero_clip_fan">Get a free account</a>
+                        </div>
+                        <button type="button" id="mh-replay" class="mh-replay">Watch the highlight again</button>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </section>
+    <script>
+    (function () {
+        // The highlight an admin picked on members.nobackboard.com/admin. If none is set (404) the clip stays hidden.
+        var base = 'https://members.nobackboard.com/api/home-clip';
+        var v = Math.floor(Date.now() / 600000); // refresh the cached poster every 10 minutes
+        var hero = document.getElementById('top');
+        var fig = document.getElementById('mh-clip');
+        var video = document.getElementById('mh-video');
+        var playBtn = document.getElementById('mh-play');
+        var end = document.getElementById('mh-end');
+        var frame = fig.querySelector('.mh-frame');
+        function track(name) { try { if (window.trackEvent) window.trackEvent(name, { event_category: 'home_clip', site: 'nobackboard.com' }); } catch (e) {} }
+        function hide() { fig.hidden = true; hero.classList.remove('has-clip'); }
+        video.addEventListener('loadedmetadata', function () { fig.hidden = false; hero.classList.add('has-clip'); }, { once: true });
+        video.addEventListener('error', hide);
+        video.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+        function play() {
+            end.hidden = true; frame.classList.remove('is-ended');
+            video.currentTime = 0;
+            var p = video.play(); if (p && p.catch) p.catch(hide);
+        }
+        video.addEventListener('play', function () {
+            if (!video.controls) track('home_clip_play');
+            playBtn.hidden = true; end.hidden = true; video.controls = true;
+        });
+        video.addEventListener('ended', function () {
+            if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+            if (video.webkitExitFullscreen) { try { video.webkitExitFullscreen(); } catch (e) {} }
+            video.controls = false; frame.classList.add('is-ended'); end.hidden = false;
+            document.getElementById('mh-end-heading').focus();
+            track('home_clip_complete');
+        });
+        playBtn.addEventListener('click', play);
+        document.getElementById('mh-replay').addEventListener('click', function () { track('home_clip_replay'); play(); });
+        video.poster = base + '/poster?v=' + v;
+        video.src = base + '?v=' + v;
+    })();
+    </script>
+
     <!-- Hero Section -->
-    <header id="top" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden text-white px-6 pt-28 pb-16 md:pt-32 md:pb-20">
+    <header id="league" class="relative flex flex-col items-center justify-center overflow-hidden text-white px-6 py-16 md:py-20">
         <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Basketball court background">
         <div class="absolute inset-0 hero-gradient" aria-hidden="true"></div>
 
